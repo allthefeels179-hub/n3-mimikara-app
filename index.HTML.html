@@ -1,0 +1,2459 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimikara N3 - 880 Từ Vựng | DEV BINH NGUYEN</title>
+    <style>
+        /* ==========================================================================
+           1. HỆ THỐNG MÀU SẮC: CHẾ ĐỘ SÁNG (XANH DƯƠNG - XANH LÁ - TRẮNG) & CHẾ ĐỘ TỐI
+           ========================================================================== */
+        :root[data-theme="light"] {
+            --bg-body: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 50%, #ffffff 100%);
+            --bg-header: linear-gradient(90deg, #0284c7 0%, #0d9488 55%, #10b981 100%);
+            --bg-card: #ffffff;
+            --bg-card-sub: #f0fdf4;
+            --bg-card-back: linear-gradient(180deg, #ffffff 0%, #f0f9ff 55%, #ecfdf5 100%);
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --primary-blue: #0284c7;
+            --primary-blue-dark: #0369a1;
+            --primary-green: #10b981;
+            --primary-green-dark: #059669;
+            --border-color: #bae6fd;
+            --border-green: #a7f3d0;
+            --pill-bg: #e0f2fe;
+            --pill-text: #0369a1;
+            --shadow-card: 0 12px 32px rgba(2, 132, 199, 0.10), 0 4px 12px rgba(16, 185, 129, 0.06);
+            --emboss-bg: linear-gradient(145deg, #ffffff, #e6f4ff);
+            --emboss-text: #0369a1;
+            --emboss-shadow: 2px 2px 4px rgba(2, 132, 199, 0.25), -2px -2px 4px rgba(255, 255, 255, 0.9);
+            --table-hover: #f0fdf4;
+            --table-learned: #dcfce7;
+        }
+
+        :root[data-theme="dark"] {
+            --bg-body: linear-gradient(135deg, #070d19 0%, #0b192c 50%, #091e1a 100%);
+            --bg-header: linear-gradient(90deg, #0f172a 0%, #064e3b 55%, #0c4a6e 100%);
+            --bg-card: #111c2d;
+            --bg-card-sub: #16263b;
+            --bg-card-back: linear-gradient(180deg, #111c2d 0%, #0f293a 60%, #0d2e28 100%);
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --primary-blue: #38bdf8;
+            --primary-blue-dark: #7dd3fc;
+            --primary-green: #34d399;
+            --primary-green-dark: #6ee7b7;
+            --border-color: #1e3a5f;
+            --border-green: #065f46;
+            --pill-bg: rgba(56, 189, 248, 0.15);
+            --pill-text: #38bdf8;
+            --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 18px rgba(56, 189, 248, 0.08);
+            --emboss-bg: linear-gradient(145deg, #16243a, #0c1524);
+            --emboss-text: #38bdf8;
+            --emboss-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), -1px -1px 3px rgba(56, 189, 248, 0.25);
+            --table-hover: rgba(52, 211, 153, 0.08);
+            --table-learned: rgba(16, 185, 129, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.25s ease, color 0.2s ease, border-color 0.25s ease;
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* ==========================================================================
+           2. CHỮ NỔI BẢN QUYỀN 3D "DEV BINH NGUYEN"
+           ========================================================================== */
+        .dev-emboss-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border-radius: 14px;
+            background: var(--emboss-bg);
+            color: var(--emboss-text);
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            box-shadow: var(--emboss-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.6), -1px -1px 1px rgba(0,0,0,0.15);
+            user-select: none;
+        }
+        :root[data-theme="dark"] .dev-emboss-badge {
+            border-color: rgba(56, 189, 248, 0.35);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5), 1px 1px 2px #000;
+        }
+
+        /* Chữ nổi in chìm trên thẻ Flashcard */
+        .card-watermark-3d {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            opacity: 0.42;
+            text-shadow: 1px 1px 0px #fff, -1px -1px 0px rgba(2, 132, 199, 0.4);
+            user-select: none;
+        }
+        :root[data-theme="dark"] .card-watermark-3d {
+            text-shadow: 1px 1px 2px #000, 0 0 8px rgba(52, 211, 153, 0.4);
+        }
+
+        /* Huy hiệu chữ nổi cố định góc dưới bên phải */
+        .floating-copyright {
+            position: fixed;
+            bottom: 18px;
+            right: 20px;
+            z-index: 999;
+            padding: 9px 18px;
+            border-radius: 99px;
+            background: var(--emboss-bg);
+            color: var(--emboss-text);
+            font-weight: 900;
+            font-size: 12.5px;
+            letter-spacing: 1.6px;
+            box-shadow: var(--emboss-shadow), 0 8px 20px rgba(0,0,0,0.15);
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .floating-copyright .dot-live {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            box-shadow: 0 0 8px var(--primary-green);
+        }
+
+        /* ==========================================================================
+           3. HEADER & NÚT CHUYỂN CHẾ ĐỘ SÁNG / TỐI
+           ========================================================================== */
+        header {
+            background: var(--bg-header);
+            color: #ffffff;
+            padding: 16px 24px;
+            box-shadow: 0 4px 22px rgba(2, 132, 199, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand-badge {
+            background: #ffffff;
+            color: #0284c7;
+            font-weight: 900;
+            font-size: 20px;
+            padding: 6px 14px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+        .brand h1 {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+        .brand p {
+            font-size: 12px;
+            color: #e0f2fe;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .progress-summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.16);
+            padding: 7px 14px;
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255,255,255,0.28);
+        }
+        .progress-bar-wrap {
+            width: 130px;
+            height: 9px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #34d399;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.45);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            backdrop-filter: blur(6px);
+        }
+        .theme-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.32);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           4. THANH CÔNG CỤ & BỐ CỤC CHÍNH
+           ========================================================================== */
+        .container {
+            max-width: 1200px;
+            margin: 22px auto;
+            padding: 0 18px;
+        }
+        .toolbar {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 24px;
+        }
+        .mode-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-card-sub);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tab-btn:hover {
+            border-color: var(--primary-blue);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.32);
+        }
+
+        .filters {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        select.blue-select, input.blue-input {
+            padding: 9px 14px;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 13.5px;
+            outline: none;
+        }
+
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           5. FLASHCARD 3D PHỐI MÀU XANH DƯƠNG - XANH LÁ - TRẮNG
+           ========================================================================== */
+        .flashcard-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .card-scene {
+            width: 100%;
+            max-width: 650px;
+            height: 380px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+        .flashcard-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .flashcard-3d.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+            padding: 26px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+        .card-face.back {
+            transform: rotateY(180deg);
+            background: var(--bg-card-back);
+            border-color: var(--primary-green);
+        }
+        .card-top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stt-pill {
+            background: var(--pill-bg);
+            color: var(--pill-text);
+            font-weight: 800;
+            font-size: 13px;
+            padding: 5px 14px;
+            border-radius: 99px;
+            border: 1px solid var(--border-color);
+        }
+        .icon-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .circle-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--primary-blue);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle-btn.starred {
+            background: #fef3c7;
+            border-color: #f59e0b;
+            color: #d97706;
+        }
+        .kanji-main {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--primary-blue-dark);
+            line-height: 1.15;
+            letter-spacing: 2px;
+        }
+        .kana-front-hint {
+            font-size: 18px;
+            color: var(--primary-green-dark);
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .card-bottom-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flip-hint {
+            font-size: 12.5px;
+            color: var(--text-sub);
+            background: var(--bg-card-sub);
+            padding: 5px 14px;
+            border-radius: 99px;
+            border: 1px solid var(--border-green);
+        }
+
+        /* Mặt sau Flashcard */
+        .reading-large {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+        .hanviet-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 4px 16px;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .meaning-large {
+            font-size: 25px;
+            font-weight: 700;
+            color: var(--text-main);
+            max-width: 92%;
+            line-height: 1.35;
+        }
+
+        .fc-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 650px;
+        }
+        .btn-blue {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1.5px solid var(--border-color);
+            padding: 11px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .btn-blue:hover {
+            border-color: var(--primary-blue);
+        }
+        .btn-blue.primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: #ffffff;
+            border-color: transparent;
+        }
+        .btn-blue.learned-active {
+            background: rgba(16, 185, 129, 0.18);
+            color: var(--primary-green-dark);
+            border-color: var(--primary-green);
+        }
+
+        /* ==========================================================================
+           6. QUIZ & BẢNG DANH SÁCH 880 TỪ
+           ========================================================================== */
+        .quiz-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: var(--shadow-card);
+        }
+        .quiz-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid var(--border-color);
+            margin-bottom: 22px;
+        }
+        .score-pills {
+            display: flex;
+            gap: 10px;
+        }
+        .score-pill {
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 800;
+            background: var(--pill-bg);
+            color: var(--pill-text);
+        }
+        .quiz-question-box {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--bg-card-sub);
+            border: 1.5px solid var(--border-green);
+            border-radius: 16px;
+            margin-bottom: 22px;
+        }
+        .quiz-q-word {
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--primary-blue-dark);
+            margin-bottom: 6px;
+        }
+        .quiz-q-sub {
+            font-size: 16px;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 650px) {
+            .quiz-options { grid-template-columns: 1fr; }
+            .kanji-main { font-size: 46px; }
+        }
+        .quiz-opt-btn {
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 15.5px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+        }
+        .quiz-opt-btn:hover:not(:disabled) {
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+        .quiz-opt-btn.correct {
+            background: rgba(16, 185, 129, 0.22) !important;
+            border-color: #10b981 !important;
+            color: var(--primary-green-dark) !important;
+        }
+        .quiz-opt-btn.wrong {
+            background: rgba(239, 68, 68, 0.22) !important;
+            border-color: #ef4444 !important;
+            color: #ef4444 !important;
+        }
+        .typing-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .typing-box input {
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 16px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            outline: none;
+        }
+        .quiz-feedback {
+            margin-top: 18px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Bảng 880 từ */
+        .list-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .table-wrapper {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        table.vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table.vocab-table th {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: #ffffff;
+            padding: 14px 12px;
+            font-size: 13.5px;
+            text-align: left;
+            font-weight: 800;
+        }
+        table.vocab-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14.5px;
+        }
+        table.vocab-table tr:hover {
+            background: var(--table-hover);
+        }
+        table.vocab-table tr.row-learned {
+            background: var(--table-learned);
+        }
+        .kanji-cell {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary-blue-dark);
+        }
+        .kana-cell {
+            color: var(--primary-green-dark);
+            font-weight: 700;
+        }
+        .hv-cell {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--pill-text);
+            background: var(--pill-bg);
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .check-input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           7. KHU VỰC GIỚI THIỆU APP KHÁC & DONATE ỦNG HỘ (2 MÃ QR)
+           ========================================================================== */
+        .community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 28px;
+        }
+        @media (max-width: 820px) {
+            .community-grid { grid-template-columns: 1fr; }
+        }
+        .qr-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 22px;
+            padding: 26px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .qr-card.green-theme {
+            border-color: var(--border-green);
+        }
+        .qr-card-tag {
+            background: var(--pill-bg);
+            color: var(--pill-text);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 14px;
+            border-radius: 99px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .qr-card.green-theme .qr-card-tag {
+            background: rgba(16, 185, 129, 0.16);
+            color: var(--primary-green-dark);
+        }
+        .qr-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .qr-card p {
+            font-size: 14.5px;
+            color: var(--text-sub);
+            line-height: 1.55;
+            max-width: 460px;
+            margin-bottom: 18px;
+        }
+        .qr-frame {
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 20px;
+            border: 2.5px solid var(--primary-blue);
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .qr-card.green-theme .qr-frame {
+            border-color: var(--primary-green);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.18);
+        }
+        .qr-canvas {
+            width: 220px;
+            height: 220px;
+            display: block;
+            border-radius: 8px;
+        }
+        .donate-note {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-green-dark);
+            background: var(--bg-card-sub);
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-green);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER VỚI CHỮ NỔI 3D "DEV BINH NGUYEN" & NÚT SÁNG/TỐI -->
+    <header>
+        <div class="header-inner">
+            <div class="brand">
+                <div class="brand-badge">N3</div>
+                <div>
+                    <h1>MIMIKARA OBOERU N3 — 880 TỪ VỰNG</h1>
+                    <p>Flashcard 3D • Phản xạ Từ vựng • Check tiến độ học tập</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- Chữ nổi 3D đánh dấu bản quyền -->
+                <div class="dev-emboss-badge" title="Bản quyền phát triển bởi DEV BINH NGUYEN">
+                    <span>⚡</span> DEV BINH NGUYEN
+                </div>
+
+                <div class="progress-summary">
+                    <div>
+                        <div class="progress-text" id="mastered-count-text">Đã thuộc: 0 / 880 từ (0%)</div>
+                        <div class="progress-bar-wrap" style="margin-top:4px;">
+                            <div class="progress-bar-fill" id="mastered-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">
+                    🌙 Chế độ Tối
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- THANH CÔNG CỤ CHUYỂN TAB & LỌC BÀI HỌC -->
+        <div class="toolbar">
+            <div class="mode-tabs">
+                <button class="tab-btn active" onclick="switchView('flashcard', this)">🗂️ Flashcard 3D</button>
+                <button class="tab-btn" onclick="switchView('quiz', this)">🎯 Check Từ Vựng (Quiz)</button>
+                <button class="tab-btn" onclick="switchView('list', this)">☑️ Danh Sách 880 Từ</button>
+                <button class="tab-btn" onclick="switchView('community', this)">💚 App Khác & Ủng Hộ</button>
+            </div>
+
+            <div class="filters">
+                <label style="font-size:13px;font-weight:700;color:var(--primary-blue-dark);">Phạm vi học:</label>
+                <select id="range-select" class="blue-select" onchange="applyFilter()"></select>
+                <select id="status-select" class="blue-select" onchange="applyFilter()">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="unlearned">Chưa thuộc</option>
+                    <option value="learned">Đã thuộc (✅)</option>
+                    <option value="starred">Đánh dấu sao (⭐)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- =======================================================
+             PHẦN 1: FLASHCARD 3D
+             ======================================================= -->
+        <section id="view-flashcard" class="view-section active">
+            <div class="flashcard-layout">
+                <div class="card-scene" onclick="flipCard()">
+                    <div class="flashcard-3d" id="flashcard-3d">
+                        <!-- Mặt trước -->
+                        <div class="card-face front">
+                            <div class="card-top-bar">
+                                <span class="stt-pill" id="fc-stt">Từ #1 / 880</span>
+                                <div class="icon-actions" onclick="event.stopPropagation()">
+                                    <button class="circle-btn" title="Phát âm tiếng Nhật" onclick="speakCurrentWord()">🔊</button>
+                                    <button class="circle-btn" id="fc-star-btn" title="Đánh dấu từ khó" onclick="toggleStarCurrent()">☆</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="kanji-main" id="fc-front-main">男性</div>
+                                <div class="kana-front-hint" id="fc-front-sub">Nhấn vào thẻ hoặc phím Space để lật xem nghĩa</div>
+                            </div>
+                            <div class="card-bottom-bar">
+                                <span class="flip-hint">🔄 Chạm để lật • Phím ← / → chuyển từ</span>
+                                <span class="card-watermark-3d">DEV BINH NGUYEN</span>
+                            </div>
+                        </div>
+
+                        <!-- Mặt sau -->
+                        <div class="card-face back">
+                            <div class="card-top-bar">
+                                <span class="stt-pill" id="fc-stt-back">Từ #1</span>
+                                <button class="circle-btn" onclick="event.stopPropagation(); speakCurrentWord()">🔊</button>
+                            </div>
+                            <div>
+                                <div class="reading-large" id="fc-back-reading">だんせい</div>
+                                <div class="hanviet-badge" id="fc-back-hv">NAM TÍNH</div>
+                                <div class="meaning-large" id="fc-back-meaning">Nam giới</div>
+                            </div>
+                            <div class="card-bottom-bar">
+                                <span class="flip-hint" id="fc-back-kanji">Kanji: 男性</span>
+                                <span class="card-watermark-3d">DEV BINH NGUYEN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fc-controls">
+                    <button class="btn-blue" onclick="moveCard(-1)">◀ Từ trước (←)</button>
+                    <button class="btn-blue" id="btn-mark-learned" onclick="toggleLearnedCurrent()">⬜ Đánh dấu Đã thuộc</button>
+                    <button class="btn-blue" onclick="shuffleDeck()">🔀 Trộn thẻ</button>
+                    <button class="btn-blue primary" onclick="moveCard(1)">Từ tiếp (→) ▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================================================
+             PHẦN 2: KIỂM TRA TỪ VỰNG (QUIZ)
+             ======================================================= -->
+        <section id="view-quiz" class="view-section">
+            <div class="quiz-card">
+                <div class="quiz-header">
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <select id="quiz-type" class="blue-select" onchange="nextQuizQuestion()">
+                            <option value="jp2vi">Trắc nghiệm: Tiếng Nhật ➔ Nghĩa Việt</option>
+                            <option value="vi2jp">Trắc nghiệm: Nghĩa Việt ➔ Tiếng Nhật</option>
+                            <option value="kanji2kana">Trắc nghiệm: Kanji ➔ Cách đọc Hiragana</option>
+                            <option value="typing">Tự luận: Gõ cách đọc Hiragana/Katakana</option>
+                        </select>
+                    </div>
+                    <div class="score-pills">
+                        <span class="score-pill" id="quiz-score">Đúng: 0 / 0</span>
+                        <span class="score-pill" id="quiz-streak">🔥 Chuỗi: 0</span>
+                    </div>
+                </div>
+
+                <div class="quiz-question-box">
+                    <div class="stt-pill" id="quiz-stt" style="display:inline-block;margin-bottom:8px;">STT #1</div>
+                    <div class="quiz-q-word" id="quiz-q-main">男性</div>
+                    <div class="quiz-q-sub" id="quiz-q-sub">NAM TÍNH</div>
+                </div>
+
+                <div class="quiz-options" id="quiz-options-box"></div>
+
+                <div class="typing-box" id="quiz-typing-box" style="display:none;">
+                    <input type="text" id="quiz-typing-input" placeholder="Nhập cách đọc (ví dụ: だんせい) rồi nhấn Enter..." onkeydown="if(event.key==='Enter') checkTypingAnswer()">
+                    <button class="btn-blue primary" onclick="checkTypingAnswer()">Kiểm tra</button>
+                </div>
+
+                <div class="quiz-feedback" id="quiz-feedback">
+                    <span id="quiz-fb-text"></span>
+                    <button class="btn-blue primary" onclick="nextQuizQuestion()">Câu tiếp theo ▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================================================
+             PHẦN 3: DANH SÁCH & CHECKLIST 880 TỪ VỰNG
+             ======================================================= -->
+        <section id="view-list" class="view-section">
+            <div class="list-controls">
+                <input type="text" id="search-input" class="blue-input" style="flex:1;min-width:260px;"
+                       placeholder="🔍 Tìm kiếm trong 880 từ (nhập STT, Kanji, Cách đọc, Nghĩa hoặc Âm Hán Việt)..."
+                       oninput="renderTable()">
+                <div style="display:flex;gap:8px;">
+                    <button class="btn-blue" onclick="markBatchInRange(true)">✅ Check thuộc cả bài đang chọn</button>
+                    <button class="btn-blue" onclick="markBatchInRange(false)">⬜ Bỏ check bài đang chọn</button>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="vocab-table">
+                    <thead>
+                        <tr>
+                            <th style="width:60px;">Check</th>
+                            <th style="width:65px;">STT</th>
+                            <th>Kanji</th>
+                            <th>Cách đọc</th>
+                            <th>Nghĩa tiếng Việt</th>
+                            <th>Âm Hán Việt</th>
+                            <th style="width:90px;">Nghe / Sao</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vocab-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- =======================================================
+             PHẦN 4: GIỚI THIỆU APP KHÁC & KÊU GỌI ỦNG HỘ DONATE
+             (Hiển thị cả trong Tab riêng và bên dưới trang để dễ quét)
+             ======================================================= -->
+        <section id="view-community" class="view-section" style="display:block; margin-top: 36px;">
+            <div class="community-grid">
+                <!-- THẺ 1: MÃ QR ĐẦU TIÊN - GIỚI THIỆU APP HỌC TIẾNG NHẬT KHÁC -->
+                <div class="qr-card">
+                    <span class="qr-card-tag">🌐 Hệ Sinh Thái Học Tập • DEV BINH NGUYEN</span>
+                    <h3>Khám Phá Ứng Dụng Học Tiếng Nhật Khác</h3>
+                    <p>
+                        Quét mã QR bên dưới để truy cập và trải nghiệm thêm ứng dụng luyện tiếng Nhật giao tiếp, Kanji & JLPT do <strong>DEV BINH NGUYEN</strong> phát triển.
+                    </p>
+                    <div class="qr-frame">
+                        <canvas id="qr-app-canvas" class="qr-canvas" width="260" height="260"></canvas>
+                    </div>
+                    <div class="dev-emboss-badge" style="margin-top: 6px;">
+                        📱 Quét QR mở App ngay trên Điện thoại
+                    </div>
+                </div>
+
+                <!-- THẺ 2: MÃ QR NGÂN HÀNG (CHỈ LẤY PHẦN MÃ VUÔNG) - KÊU GỌI DONATE -->
+                <div class="qr-card green-theme">
+                    <span class="qr-card-tag">💚 Ủng Hộ Nhà Phát Triển (Donate)</span>
+                    <h3>Tiếp Thêm Động Lực Cho DEV BINH NGUYEN</h3>
+                    <p>
+                        Nếu bộ công cụ học 880 từ vựng N3 này hữu ích với bạn, hãy quét mã QR bên dưới để mời <strong>DEV BINH NGUYEN</strong> một ly cà phê duy trì & phát triển thêm nhiều web học miễn phí nhé!
+                    </p>
+                    <div class="qr-frame">
+                        <!-- Chỉ hiển thị duy nhất phần mã vuông QR đã cắt gọn -->
+                        <canvas id="qr-bank-canvas" class="qr-canvas" width="260" height="260"></canvas>
+                    </div>
+                    <div class="donate-note">
+                        ✨ Mọi sự đóng góp của bạn đều là nguồn động lực to lớn! Cảm ơn bạn rất nhiều!
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- HUY HIỆU BẢN QUYỀN CHỮ NỔI GÓC DƯỚI PHẢI -->
+    <div class="floating-copyright" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" title="Nhấn để tới mục App khác & Donate">
+        <span class="dot-live"></span>
+        <span>© DEV BINH NGUYEN</span>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. CHUYỂN ĐỔI CHẾ ĐỘ SÁNG / TỐI (LIGHT & DARK MODE)
+        // =========================================================================
+        const savedTheme = localStorage.getItem('n3_theme_mode') || 'light';
+        setTheme(savedTheme);
+
+        function setTheme(mode) {
+            document.documentElement.setAttribute('data-theme', mode);
+            localStorage.setItem('n3_theme_mode', mode);
+            const btn = document.getElementById('theme-btn');
+            if (btn) {
+                btn.innerHTML = mode === 'dark' ? '☀️ Chế độ Sáng' : '🌙 Chế độ Tối';
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        }
+
+        // =========================================================================
+        // 2. VẼ CHÍNH XÁC 2 MÃ QR (QR APP KHÁC & CHỈ PHẦN MÃ QR NGÂN HÀNG)
+        // =========================================================================
+        // Ma trận 29x29 nguyên bản của ảnh 1 (qr japan learn.png)
+        const QR_APP_MATRIX = [
+            "11111110100010101010001111111",
+            "10000010001110100110101000001",
+            "10111010010000100110001011101",
+            "10111010001111111101001011101",
+            "10111010110101101001001011101",
+            "10000010011010000111101000001",
+            "11111110101010101010101111111",
+            "00000000100010000100000000000",
+            "11011010110110011101010101110",
+            "00100001011110000111001011110",
+            "10111110111000000010000000100",
+            "00011100011000000010001011001",
+            "11000010100000000000010000111",
+            "10101000110000000001111011100",
+            "01110111010000000001101110100",
+            "10010000100000000001111101101",
+            "00111011010000000001101000110",
+            "01011001111000000000100010000",
+            "01101111011000001111010010111",
+            "01001101111011001110110010000",
+            "10111011011110011001111111001",
+            "00000000101010111110100010001",
+            "11111110110000011101101010101",
+            "10000010010011101101100011000",
+            "10111010000100111001111110011",
+            "10111010011101010101101100111",
+            "10111010000101011100110011111",
+            "10000010110110011000011111000",
+            "11111110000110011001100100110"
+        ];
+
+        // Ma trận 33x33 nguyên bản phần mã vuông QR Ngân hàng trong ảnh 1.jpg
+        const QR_BANK_MATRIX = [
+            "111111101101110101100110101111111",
+            "100000101001110011011001001000001",
+            "101110100101101111000110101011101",
+            "101110100100010010110101001011101",
+            "101110100010100111100110001011101",
+            "100000101101011000110100001000001",
+            "111111101010101010101010101111111",
+            "000000001111001000011000000000000",
+            "110111100001011010100010111010100",
+            "100010011101110001001001011100000",
+            "001111100111001011011010100110100",
+            "101000000011111001110000100001001",
+            "110111100101010111100011011001100",
+            "010011011101000010101100101011000",
+            "110010100000101110111010001110100",
+            "111101100110011111110011010010110",
+            "101011010000010111001011011010000",
+            "010100011000101000111100000110010",
+            "100011101110111101101001010100100",
+            "101110110100100101001101101001010",
+            "101101100101011101100110100010001",
+            "110001011001001011001100101010000",
+            "100000101101001000101000101011101",
+            "111101011001011101011111000010110",
+            "111111101011110110001000111110011",
+            "000000001010011011110011100001001",
+            "111111100010110011110110110101011",
+            "100000100101010010111000100010100",
+            "101110101001000101101001110101010",
+            "101110101000011100000101100000100",
+            "101110101101000101100001111110110",
+            "100000101010000111111011010000100",
+            "111111101000111100001110101101011"
+        ];
+
+        function renderAppQR() {
+            const canvas = document.getElementById('qr-app-canvas');
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+
+            const n = QR_APP_MATRIX.length;
+            const pad = 24;
+            const cell = (size - pad * 2) / n;
+
+            // Vẽ 4 góc bo khung quét QR giống hệt ảnh qr japan learn.png
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            const bLen = 28;
+            // Top-left
+            ctx.beginPath(); ctx.moveTo(8, 8 + bLen); ctx.arcTo(8, 8, 8 + bLen, 8, 14); ctx.lineTo(8 + bLen, 8); ctx.stroke();
+            // Top-right
+            ctx.beginPath(); ctx.moveTo(size - 8 - bLen, 8); ctx.arcTo(size - 8, 8, size - 8, 8 + bLen, 14); ctx.lineTo(size - 8, 8 + bLen); ctx.stroke();
+            // Bottom-left
+            ctx.beginPath(); ctx.moveTo(8, size - 8 - bLen); ctx.arcTo(8, size - 8, 8 + bLen, size - 8, 14); ctx.lineTo(8 + bLen, size - 8); ctx.stroke();
+            // Bottom-right
+            ctx.beginPath(); ctx.moveTo(size - 8 - bLen, size - 8); ctx.arcTo(size - 8, size - 8, size - 8, size - 8 - bLen, 14); ctx.lineTo(size - 8, size - 8 - bLen); ctx.stroke();
+
+            // Vẽ các ô dữ liệu QR
+            ctx.fillStyle = '#000000';
+            for (let r = 0; r < n; r++) {
+                for (let c = 0; c < n; c++) {
+                    // Bỏ qua 3 góc finder để vẽ finder bo tròn đẹp như gốc
+                    const inTL = r < 7 && c < 7;
+                    const inTR = r < 7 && c >= n - 7;
+                    const inBL = r >= n - 7 && c < 7;
+                    if (inTL || inTR || inBL) continue;
+                    if (QR_APP_MATRIX[r][c] === '1') {
+                        ctx.fillRect(pad + c * cell, pad + r * cell, Math.ceil(cell), Math.ceil(cell));
+                    }
+                }
+            }
+
+            // Vẽ 3 cụm Finder Pattern bo tròn
+            function drawFinder(fx, fy) {
+                ctx.lineWidth = cell;
+                ctx.strokeStyle = '#000000';
+                ctx.beginPath();
+                ctx.roundRect(fx + cell / 2, fy + cell / 2, cell * 6, cell * 6, cell * 1.4);
+                ctx.stroke();
+                ctx.fillStyle = '#000000';
+                ctx.beginPath();
+                ctx.roundRect(fx + cell * 2, fy + cell * 2, cell * 3, cell * 3, cell * 0.6);
+                ctx.fill();
+            }
+            drawFinder(pad, pad);
+            drawFinder(pad + (n - 7) * cell, pad);
+            drawFinder(pad, pad + (n - 7) * cell);
+
+            // Vẽ icon quả địa cầu xanh dương ở chính giữa
+            const cx = size / 2, cy = size / 2;
+            ctx.fillStyle = '#185abc';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 24, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.8;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.ellipse(cx, cy, 6, 12, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(cx - 11, cy - 4); ctx.lineTo(cx + 11, cy - 4);
+            ctx.moveTo(cx - 11, cy + 4); ctx.lineTo(cx + 11, cy + 4);
+            ctx.stroke();
+
+            // Nếu có file ảnh gốc 'qr japan learn.png' nằm cùng thư mục thì nạp đè lên để chuẩn 100%
+            const img = new Image();
+            img.onload = () => {
+                ctx.clearRect(0, 0, size, size);
+                ctx.drawImage(img, 0, 0, size, size);
+            };
+            img.src = 'qr japan learn.png';
+        }
+
+        function renderBankQR() {
+            const canvas = document.getElementById('qr-bank-canvas');
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+
+            // 1. Vẽ sẵn ma trận QR 33x33 chuẩn (chỉ lấy phần mã vuông)
+            const n = QR_BANK_MATRIX.length;
+            const pad = 12;
+            const cell = (size - pad * 2) / n;
+            ctx.fillStyle = '#000000';
+            for (let r = 0; r < n; r++) {
+                for (let c = 0; c < n; c++) {
+                    if (QR_BANK_MATRIX[r][c] === '1') {
+                        ctx.fillRect(pad + c * cell, pad + r * cell, Math.ceil(cell), Math.ceil(cell));
+                    }
+                }
+            }
+
+            // 2. Nếu có file '1.jpg' cùng thư mục, tự động cắt (crop) đúng vùng mã QR vuông ở giữa
+            const localImg = new Image();
+            localImg.onload = () => {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, size, size);
+                // Tọa độ vùng mã vuông trắng trong ảnh 1.jpg (x: 26%, y: 21.6%, w: 48%, h: 21.6%)
+                const sx = localImg.width * 0.26;
+                const sy = localImg.height * 0.216;
+                const sw = localImg.width * 0.48;
+                const sh = localImg.height * 0.216;
+                ctx.drawImage(localImg, sx, sy, sw, sh, 0, 0, size, size);
+            };
+            localImg.onerror = () => {
+                // Dự phòng chuẩn VietQR chỉ lấy mã vuông (qr_only)
+                const vqr = new Image();
+                vqr.crossOrigin = 'anonymous';
+                vqr.onload = () => {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, size, size);
+                    ctx.drawImage(vqr, 0, 0, size, size);
+                };
+                vqr.src = 'https://img.vietqr.io/image/VCB-9392858581-qr_only.png';
+            };
+            localImg.src = '1.jpg';
+        }
+
+        // =========================================================================
+        // 3. CƠ SỞ DỮ LIỆU ĐẦY ĐỦ 880 TỪ VỰNG N3 MIMIKARA
+        // =========================================================================
+        const RAW_VOCAB_DATA = `
+1|男性|だんせい|Nam giới|NAM TÍNH
+2|女性|じょせい|Nữ giới|NỮ TÍNH
+3|高齢|こうれい|Cao tuổi|CAO LINH
+4|年上|としうえ|Lớn tuổi hơn|NIÊN THƯỢNG
+5|目上|めうえ|Cấp trên, người trên|MỤC THƯỢNG
+6|先輩|せんぱい|Người đi trước|TIỀN BỐI
+7|後輩|こうはい|Người đi sau|HẬU BỐI
+8|上司|じょうし|Ông chủ, cấp trên|THƯỢNG TI
+9|相手|あいて|Đối phương|TƯƠNG THỦ
+10|知り合い|しりあい|Người quen|TRI HỢP
+11|友人|ゆうじん|Bạn|HỮU NHÂN
+12|仲|なか|Mối quan hệ|TRỌNG
+13|生年月日|せいねんがっぴ|Ngày tháng năm sinh|SINH NIÊN NGUYỆT NHẬT
+14|誕生|たんじょう|Sự ra đời|ĐẢN SINH
+15|年|とし|Năm, tuổi|NIÊN
+16|出身|しゅっしん|Xuất thân, gốc gác|XUẤT THÂN
+17|故郷|こきょう|Quê hương|CỐ HƯƠNG
+18|成長|せいちょう|Sinh trưởng, phát triển, trưởng thành|THÀNH TRƯỞNG
+19|成人|せいじん|Người trưởng thành|THÀNH NHÂN
+20|合格|ごうかく|Thi đỗ, trúng tuyển|HỢP CÁCH
+21|進学|しんがく|Học lên|TIẾN HỌC
+22|退学|たいがく|Sự bỏ học|THOÁI HỌC
+23|就職|しゅうしょく|Tìm việc|TỰU CHỨC
+24|退職|たいしょく|Nghỉ việc|THOÁI CHỨC
+25|失業|しつぎょう|Thất nghiệp|THẤT NGHIỆP
+26|残業|ざんぎょう|Làm thêm giờ|TÀN NGHIỆP
+27|生活|せいかつ|Cuộc sống, sinh hoạt|SINH HOẠT
+28|通勤|つうきん|Đi làm (đi và về)|THÔNG CẦN
+29|学歴|がくれき|Bằng cấp, quá trình học|HỌC LỊCH
+30|給料|きゅうりょう|Tiền lương|CẤP LIỆU
+31|面接|めんせつ|Phỏng vấn|DIỆN TIẾP
+32|休憩|きゅうけい|Nghỉ giải lao|HƯU KHẾ
+33|観光|かんこう|Tham quan, du lịch|QUAN QUANG
+34|帰国|きこく|Về nước|QUY QUỐC
+35|帰省|きせい|Về quê|QUY TỈNH
+36|帰宅|きたく|Về nhà|QUY TRẠCH
+37|参加|さんか|Tham gia|THAM GIA
+38|出席|しゅっせき|Tham gia, có mặt|XUẤT TỊCH
+39|欠席|けっせき|Vắng mặt|KHIẾM TỊCH
+40|遅刻|ちこく|Đến muộn|TRÌ KHẮC
+41|化粧|けしょう|Trang điểm|HÓA TRANG
+42|計算|けいさん|Tính toán, thanh toán|KẾ TOÁN
+43|計画|けいかく|Kế hoạch|KẾ HOẠCH
+44|成功|せいこう|Thành công|THÀNH CÔNG
+45|失敗|しっぱい|Thất bại|THẤT BẠI
+46|準備|じゅんび|Chuẩn bị|CHUẨN BỊ
+47|整理|せいり|Sắp xếp, vứt bỏ những thứ không cần thiết|CHỈNH LÝ
+48|注文|ちゅうもん|Đặt hàng, gọi đồ, yêu cầu|CHÚ VĂN
+49|貯金|ちょきん|Tiền tiết kiệm|TRỮ KIM
+50|徹夜|てつや|Thức trắng đêm|TRIỆT DẠ
+51|引っ越し|ひっこし|Chuyển nhà|DẪN VIỆT
+52|身長|しんちょう|Chiều cao cơ thể|THÂN TRƯỜNG
+53|体重|たいじゅう|Cân nặng|THỂ TRỌNG
+54||けが|Vết thương|
+55|会|かい|Hội, bữa tiệc|HỘI
+56|趣味|しゅみ|Sở thích|THÚ VỊ
+57|興味|きょうみ|Hứng thú|HƯNG VỊ
+58|思い出|おもいで|Kỉ niệm|TƯ XUẤT
+59|冗談|じょうだん|Nói đùa|NHŨNG ĐÀM
+60|目的|もくてき|Mục đích|MỤC ĐÍCH
+61|約束|やくそく|Lời hứa, cuộc hẹn|ƯỚC THÚC
+62||おしゃべり|Nói chuyện, tán gẫu|
+63|遠慮|えんりょ|Khách khí, ngần ngại|VIỄN LỰ
+64|我慢|がまん|Nhẫn nại, chịu đựng|NGÃ MẠN
+65|迷惑|めいわく|Làm phiền, quấy rầy|MÊ HOẶC
+66|希望|きぼう|Hy vọng, mong ước|HY VỌNG
+67|夢|ゆめ|Giấc mơ, ước mơ|MỘNG
+68|賛成|さんせい|Tán thành, đồng ý|TÁN THÀNH
+69|反対|はんたい|Đối ngược, phản đối|PHẢN ĐỐI
+70|想像|そうぞう|Tưởng tượng|TƯỞNG TƯỢNG
+71|努力|どりょく|Nỗ lực, sự cố gắng|NỖ LỰC
+72|太陽|たいよう|Mặt trời|THÁI DƯƠNG
+73|地球|ちきゅう|Trái đất, địa cầu|ĐỊA CẦU
+74|温度|おんど|Nhiệt độ|ÔN ĐỘ
+75|湿度|しつど|Độ ẩm|THẤP ĐỘ
+76|湿気|しっけ|Hơi ẩm, sự ẩm ướt|THẤP KHÍ
+77|梅雨|つゆ|Mùa mưa|MAI VŨ
+78||かび|Nấm mốc|
+79|暖房|だんぼう|Hệ thống sưởi, sưởi ấm|NOÃN PHÒNG
+80|皮|かわ|Da, vỏ|BÌ
+81|缶|かん|Lon|PHẪU
+82|画面|がめん|Màn hình|HỌA DIỆN
+83|番組|ばんぐみ|Chương trình ti vi, kênh|PHIÊN TỔ
+84|記事|きじ|Bài báo, bài viết, phóng sự|KÍ SỰ
+85|近所|きんじょ|Hàng xóm, vùng phụ cận|CẬN SỞ
+86|警察|けいさつ|Cảnh sát|CẢNH SÁT
+87|犯人|はんにん|Thủ phạm, tội phạm|PHẠM NHÂN
+88|小銭|こぜに|Tiền lẻ|TIỂU TIỀN
+89||ごちそう|Chiêu đãi, khao|
+90|作者|さくしゃ|Tác giả|TÁC GIẢ
+91|作品|さくひん|Tác phẩm|TÁC PHẨM
+92|制服|せいふく|Đồng phục|CHẾ PHỤC
+93|洗剤|せんざい|Chất tẩy, bột giặt, xà phòng|TẨY TỄ
+94|底|そこ|Phần dưới cùng, đế, đáy|ĐỂ
+95|地下|ちか|Ngầm, dưới mặt đất|ĐỊA HẠ
+96|寺|てら|Chùa|TỰ
+97|道路|どうろ|Con đường|ĐẠO LỘ
+98|坂|さか|Dốc|PHẢN
+99|煙|けむり|Khói|YÊN
+100|灰|はい|Tàn, tro|HÔI
+101|判|はん|Con dấu|PHÁN
+102|名刺|めいし|Danh thiếp|DANH THÍCH
+103|免許|めんきょ|Giấy phép, sự cho phép|MIỄN HỨA
+104|多く|おおく|Nhiều|ĐA
+105|前半|ぜんはん|Phần đầu|TIỀN BÁN
+106|後半|こうはん|Phần sau|HẬU BÁN
+107|最高|さいこう|Cao nhất, tuyệt vời|TỐI CAO
+108|最低|さいてい|Thấp nhất, tồi nhất, kinh khủng|TỐI ĐÊ
+109|最初|さいしょ|Đầu tiên|TỐI SƠ
+110|最後|さいご|Cuối cùng|TỐI HẬU
+111|自動|じどう|Tự động|TỰ ĐỘNG
+112|種類|しゅるい|Chủng loại, loại|CHỦNG LOẠI
+113|性格|せいかく|Tính cách|TÍNH CÁCH
+114|性質|せいしつ|Tính chất|TÍNH CHẤT
+115|順番|じゅんばん|Thứ tự, lần lượt|THUẬN PHIÊN
+116|番|ばん|Lượt, phiên|PHIÊN
+117|方法|ほうほう|Phương pháp, cách thức|PHƯƠNG PHÁP
+118|製品|せいひん|Sản phẩm|CHẾ PHẨM
+119|値上がり|ねあがり|Tăng giá|TRỊ THƯỢNG
+120|生|なま|Nguyên chất, tươi, sống|SINH
+121|渇く|かわく|Khát|KHÁT
+122|嗅ぐ|かぐ|Ngửi|KHỨU
+123|叩く|たたく|Đánh, gõ, vỗ|KHẤU
+124|殴る|なぐる|Đấm|ẨU
+125||ける|Đá|
+126|抱く|だく|Ôm, ẵm, bế|BÃO
+127|倒れる|たおれる|Bị ngã, bị đổ, ngã bệnh, ngất|ĐẢO
+128|倒す|たおす|Làm đổ, đánh bại|ĐẢO
+129|起きる/起こる|おきる/おこる|Thức dậy, xảy ra|KHỞI
+130|起こす|おこす|Đánh thức dậy, dựng lên, gây ra|KHỞI
+131|尋ねる|たずねる|Hỏi, xin, yêu cầu|TẦM
+132|呼ぶ|よぶ|Gọi|HÔ
+133|叫ぶ|さけぶ|Kêu, reo hò, la hét|KHIẾU
+134|黙る|だまる|Im lặng|MẶC
+135|飼う|かう|Nuôi (thú cưng)|TỰ
+136|数える|かぞえる|Đếm|SỐ
+137|乾く|かわく|Khô|CAN
+138|乾かす|かわかす|Làm khô|CAN
+139|畳む|たたむ|Gấp, xếp|ĐIỆP
+140|誘う|さそう|Rủ, mời|DỤ
+141||おごる|Khao, chiêu đãi|
+142|預かる|あずかる|Trông nom, chăm sóc, giữ hộ|DỰ
+143|預ける|あずける|Gửi tiền, giao phó|DỰ
+144|決まる|きまる|Được quyết định, được sắp đặt|QUYẾT
+145|決める|きめる|Quyết định|QUYẾT
+146|写る|うつる|Được chiếu, được chụp|TẢ
+147|写す|うつす|Chụp, chiếu, sao chép|TẢ
+148|思い出す|おもいだす|Nhớ lại, hồi tưởng|TƯ XUẤT
+149|教わる|おそわる|Được chỉ dạy|GIÁO
+150|申し込む|もうしこむ|Đăng ký|THÂN NHẬP
+151|断る|ことわる|Từ chối|ĐOẠN
+152|見つかる|みつかる|Được tìm thấy, bị bắt gặp|KIẾN
+153|見つける|みつける|Tìm thấy|KIẾN
+154|捕まる|つかまる|Bị bắt, nắm, giữ|BỘ
+155|捕まえる|つかまえる|Bắt, tóm|BỘ
+156|乗る|のる|Cưỡi, lên (xe)|THỪA
+157|乗せる|のせる|Chất lên, cho lên|THỪA
+158|降りる/下りる|おりる|Xuống, được chấp nhận|GIÁNG/HẠ
+159|降ろす/下ろす|おろす|Cho xuống xe, hạ xuống, rút tiền|GIÁNG/HẠ
+160|直る|なおる|Được sửa chữa|TRỰC
+161|直す|なおす|Sửa chữa, chỉnh lại, dịch|TRỰC
+162|治る|なおる|(Bệnh) bình phục, được chữa trị|TRỊ
+163|治す|なおす|Chữa trị, phục hồi|TRỊ
+164|亡くなる|なくなる|Mất, qua đời|VONG
+165|亡くす|なくす|Mất (người thân)|VONG
+166|生まれる|うまれる|Được sinh ra, được tạo ra|SINH
+167|産む/生む|うむ|Sinh, tạo ra|SẢN/SINH
+168|出会う|であう|Gặp một cách tình cờ|XUẤT HỘI
+169|訪ねる|たずねる|Thăm|PHỎNG
+170|付き合う|つきあう|Quan hệ, đi cùng, hẹn hò|PHÓ HỢP
+171|効く|きく|Có hiệu quả, có tác dụng|HIỆU
+172|流行る|はやる|Phổ biến, thịnh hành, lan tràn|LƯU HÀNH
+173|経つ|たつ|Trải qua, trôi qua (thời gian)|KINH
+174|間に合う|まにあう|Kịp, đúng giờ|GIAN HỢP
+175|間に合わせる|まにあわせる|Kịp thời, làm cho kịp|GIAN HỢP
+176|通う|かよう|Đi lại thường xuyên, thấu hiểu|THÔNG
+177|込む|こむ|Đông đúc|NHẬP
+178|すれ違う|すれちがう|Lướt qua nhau, lỡ hụt|VI
+179|掛かる|かかる|Mất thời gian/tiền, khởi động|QUẢI
+180|掛ける|かける|Treo, mắc, gọi điện, phép nhân|QUẢI
+181|動く|うごく|Di chuyển, hoạt động|ĐỘNG
+182|動かす|うごかす|Làm cho hoạt động, vận hành|ĐỘNG
+183|離れる|はなれる|Rời ra, tách khỏi, cách xa|LI
+184|離す|はなす|Tách ra, buông ra, để xa ra|LI
+185||ぶつかる|Va chạm, trùng lịch, xung đột|
+186||ぶつける|Đâm mạnh, đụng vào|
+187||こぼれる|Bị tràn, trào (nước mắt)|
+188||こぼす|Làm tràn, làm đổ|
+189||ふく|Lau, chùi|
+190|片付く|かたづく|Được dọn dẹp, được giải quyết|PHIẾN PHÓ
+191|片付ける|かたづける|Dọn dẹp, hoàn thành, giải quyết|PHIẾN PHÓ
+192|包む|つつむ|Bọc, gói|BAO
+193|張る|はる|Dán, kéo căng, giăng|TRƯƠNG
+194|無くなる|なくなる|Bị mất, hết|VÔ
+195|無くす|なくす|Làm mất|VÔ
+196|足りる|たりる|Đủ|TÚC
+197|残る|のこる|Còn lại|TÀN
+198|残す|のこす|Bỏ lại, chừa lại|TÀN
+199|腐る|くさる|Thiu, mục nát, thối rữa|HỦ
+200||むける|Bị bóc, bị gọt, bị lột ra|
+201||むく|Bóc, gọt, lột|
+202|滑る|すべる|Trượt băng, trượt|HOẠT
+203|積もる|つもる|Tích trữ, chồng chất|TÍCH
+204|積む|つむ|Chất lên|TÍCH
+205|空く|あく|Trống, rảnh rỗi|KHÔNG
+206|空ける|あける|Đục lỗ, bỏ trống|KHÔNG
+207|下がる|さがる|Hạ xuống, giảm xuống, lùi xuống|HẠ
+208|下げる|さげる|Làm hạ xuống, làm giảm xuống|HẠ
+209|冷える|ひえる|Bị lạnh đi|LÃNH
+210|冷やす|ひやす|Làm lạnh, ướp lạnh|LÃNH
+211|冷める|さめる|Nguội đi, giảm nhiệt huyết|LÃNH
+212|冷ます|さます|Làm cho nguội|LÃNH
+213|燃える|もえる|Cháy, bùng cháy đam mê|NHIÊN
+214|燃やす|もやす|Đốt cháy|NHIÊN
+215|沸く|わく|Sôi, sục sôi|PHÍ
+216|沸かす|わかす|Đun sôi, khuấy động|PHÍ
+217|鳴る|なる|Kêu, reo, vang lên|MINH
+218|鳴らす|ならす|Làm kêu, thổi, bấm chuông|MINH
+219|役立つ/役に立つ|やくだつ/やくにたつ|Hữu ích, có ích|DỊCH LẬP
+220|役立てる/役に立てる|やくだてる/やくにたてる|Đưa vào sử dụng, phát huy tác dụng|DỊCH LẬP
+221|飾る|かざる|Trang trí|SỨC
+222|遊ぶ|あそぶ|Chơi|DU
+223|集まる|あつまる|Tập trung|TẬP
+224|教える|おしえる|Chỉ dạy, cho biết|GIÁO
+225|踊る|おどる|Nhảy múa|DŨNG
+226|思う|おもう|Nghĩ, cảm nhận|TƯ
+227|考える|かんがえる|Suy nghĩ|KHẢO
+228|片づける|かたづける|Dọn dẹp|PHIẾN
+229|手伝う|てつだう|Giúp đỡ|THỦ TRUYỀN
+230|働く|はたらく|Làm việc, hoạt động|ĐỘNG
+231|決まる|きまる|Được quyết định|QUYẾT
+232|騒ぐ|さわぐ|Làm ồn ào, nhốn nháo|TAO
+233|知らせ|しらせ|Thông báo, tin tức|TRI
+234|頼む|たのむ|Nhờ, yêu cầu|LẠI
+235|疲れる|つかれる|Mệt mỏi|BÌ
+236|違う|ちがう|Khác nhau, sai|VI
+237|始める|はじめる|Bắt đầu|THỦY
+238|続く|つづく|Tiếp tục, kéo dài|TỤC
+239|暮れる|くれる|Cuối (năm), chiều tà (hết ngày)|MỘ
+240|行く|いく|Đi|HÀNH
+241|帰り|かえり|Lượt về, sự trở về|QUY
+242|急ぎ|いそぎ|Sự khẩn cấp, vội|CẤP
+243|遅れ|おくれ|Sự chậm trễ, muộn|TRÌ
+244|貸し|かし|Sự cho vay|THẢI
+245|借り|かり|Sự vay nợ|TÁ
+246|勝ち|かち|Sự chiến thắng|THẮNG
+247|負け|まけ|Sự thua cuộc|PHỤ
+248|迎え|むかえ|Sự đón tiếp|NGHÊNH
+249|始まり|はじまり|Sự bắt đầu|THỦY
+250|終わり|おわり|Sự kết thúc|CHUNG
+251|戻り|もどり|Sự quay trở lại|LỆ
+252|別れ|わかれ|Sự chia tay, chia nhánh|BIỆT
+253|喜び|よろこび|Niềm vui mừng, phấn khởi|HỶ
+254|楽しみ|たのしみ|Niềm vui, sự mong đợi|LẠC
+255|笑い|わらい|Tiếng cười, nụ cười|TIẾU
+256|驚き|おどろき|Sự ngạc nhiên|KINH
+257|怒り|いかり|Sự tức giận|NỘ
+258|悲しみ|かなしみ|Nỗi buồn đau|BI
+259|幸せな|しあわせな|Hạnh phúc|HẠNH
+260|得意な|とくいな|Giỏi, sở trường, tự hào|ĐẮC Ý
+261|苦手な|にがてな|Kém, yếu, sở đoản|KHỔ THỦ
+262|熱心な|ねっしんな|Say mê, nhiệt tình|NHIỆT TÂM
+263|夢中な|むちゅうな|Say sưa, miệt mài|MỘNG TRUNG
+264|退屈な|たいくつな|Buồn tẻ, chán ngắt|THOÁI QUẬT
+265|健康な|けんこうな|Khỏe mạnh|KIỆN KHANG
+266|苦しい|くるしい|Khổ cực, đau đớn, khó thở|KHỔ
+267|平気な|へいきな|Bình thản, vô tư|BÌNH KHÍ
+268|悔しい|くやしい|Tiếc nuối, cay cú|HỐI
+269||うらやましい|Ghen tỵ, đáng ngưỡng mộ|
+270||かゆい|Ngứa|
+271||おとなしい|Trầm tính, dịu dàng, ít nói|
+272|我慢強い|がまんづよい|Kiên trì, sức chịu đựng cao|NGÃ MẠN CƯỜNG
+273|正直な|しょうじきな|Trung thực, thật thà|CHÍNH TRỰC
+274||けちな|Keo kiệt, bủn xỉn|
+275||わがままな|Ích kỷ, bướng bỉnh|
+276|積極的な|せっきょくてきな|Tích cực, chủ động|TÍCH CỰC ĐÍCH
+277|消極的な|しょうきょくてきな|Tiêu cực, thụ động|TIÊU CỰC ĐÍCH
+278|満足な|まんぞくな|Thỏa mãn, hài lòng|MÃN TÚC
+279|不満な|ふまんな|Bất mãn, không hài lòng|BẤT MÃN
+280|不安な|ふあんな|Lo lắng, bất an|BẤT AN
+281|大変な|たいへんな|Vất vả, khó khăn, nghiêm trọng|ĐẠI BIẾN
+282|無理な|むりな|Vô lý, quá sức|VÔ LÝ
+283|不注意な|ふちゅういな|Bất cẩn, thiếu chú ý|BẤT CHÚ Ý
+284|楽な|らくな|Dễ dàng, thoải mái, nhàn hạ|LẠC
+285|面倒な|めんどうな|Rắc rối, phiền toái|DIỆN ĐẢO
+286|失礼な|しつれいな|Thất lễ, bất lịch sự|THẤT LỄ
+287|当然な|とうぜんな|Đương nhiên, tất nhiên|ĐƯƠNG NHIÊN
+288|意外な|いがいな|Bất ngờ, ngoài dự đoán|Ý NGOẠI
+289|結構な|けっこうな|Tốt, ổn, đủ rồi|KẾT CẤU
+290|派手な|はでな|Lòe loẹt, màu mè|PHÁI THỦ
+291|地味な|じみな|Đơn điệu, giản dị, mộc mạc|ĐỊA VỊ
+292||おしゃれな|Sành điệu, hợp thời trang|
+293|変な|へんな|Kỳ lạ, dị thường|BIẾN
+294|不思議な|ふしぎな|Kỳ diệu, bí ẩn, lạ lùng|BẤT TƯ NGHỊ
+295||ましな|Khá hơn, đỡ hơn|
+296||むだな|Vô ích, lãng phí|
+297|自由な|じゆうな|Tự do|TỰ DO
+298|不自由な|ふじゆうな|Bất tiện, thiếu tự do, khuyết tật|BẤT TỰ DO
+299|暖まる/温まる|あたたまる|Ấm lên|NOÃN/ÔN
+300|暖める/温める|あたためる|Làm ấm, hâm nóng|NOÃN/ÔN
+301|高まる|たかまる|Tăng lên, dâng cao|CAO
+302|高める|たかめる|Nâng cao, làm tăng lên|CAO
+303|強まる|つよまる|Mạnh lên|CƯỜNG
+304|強める|つよめる|Làm mạnh, tăng cường|CƯỜNG
+305|弱まる|よわまる|Yếu đi, suy giảm|NHƯỢC
+306|弱める|よわめる|Làm suy yếu|NHƯỢC
+307|広まる|ひろまる|Lan truyền, mở rộng|QUẢNG
+308|広める|ひろめる|Mở rộng, truyền bá|QUẢNG
+309|深まる|ふかまる|Sâu sắc thêm|THÂM
+310|深める|ふかめる|Làm sâu sắc thêm|THÂM
+311|世話|せわ|Sự chăm sóc, giúp đỡ|THẾ THOẠI
+312|家庭|かてい|Gia đình, tổ ấm|GIA ĐÌNH
+313|協力|きょうりょく|Hợp tác, hiệp lực|HIỆP LỰC
+314|感謝|かんしゃ|Biết ơn, cảm tạ|CẢM TẠ
+315|礼|れい|Lời cảm ơn, lễ nghĩa|LỄ
+316|詫び|わび|Lời xin lỗi, sự tạ lỗi|SÁ
+317||おじぎ|Sự cúi đầu chào|
+318|握手|あくしゅ|Bắt tay|ÁC THỦ
+319|意地悪|いじわる|Xấu tính, hay chơi xấu|Ý ĐỊA ÁC
+320||いたずら|Nghịch ngợm, trò đùa|
+321|節約|せつやく|Sự tiết kiệm|TIẾT ƯỚC
+322|経営|けいえい|Quản lý, kinh doanh|KINH DOANH
+323|反省|はんせい|Tự kiểm điểm, nhìn nhận lại|PHẢN TỈNH
+324|実行|じっこう|Thực hiện, thi hành|THỰC HÀNH
+325|進歩|しんぽ|Tiến bộ, tiến triển|TIẾN BỘ
+326|変化|へんか|Sự thay đổi, biến đổi|BIẾN HÓA
+327|発達|はったつ|Phát triển, phát đạt|PHÁT ĐẠT
+328|体力|たいりょく|Thể lực|THỂ LỰC
+329|出場|しゅつじょう|Tham dự, ra sân thi đấu|XUẤT TRƯỜNG
+330|活躍|かつやく|Hoạt động sôi nổi, năng nổ|HOẠT DƯỢC
+331|競争|きょうそう|Cạnh tranh, thi đấu|CẠNH TRANH
+332|応援|おうえん|Hỗ trợ, cổ vũ|ỨNG VIỆN
+333|拍手|はくしゅ|Vỗ tay|PHÁCH THỦ
+334|人気|にんき|Được yêu thích, nổi tiếng|NHÂN KHÍ
+335||うわさ|Tin đồn, lời đồn|
+336|情報|じょうほう|Tin tức, thông tin|TÌNH BÁO
+337|交換|こうかん|Trao đổi, thay thế|GIAO HOÁN
+338|流行|りゅうこう|Trào lưu, thịnh hành|LƯU HÀNH
+339|宣伝|せんでん|Tuyên truyền, quảng bá|TUYÊN TRUYỀN
+340|広告|こうこく|Quảng cáo|QUẢNG CÁO
+341|注目|ちゅうもく|Sự chú ý, tâm điểm|CHÚ MỤC
+342|通訳|つうやく|Thông dịch, phiên dịch nói|THÔNG DỊCH
+343|翻訳|ほんやく|Biên dịch, dịch văn bản|PHIÊN DỊCH
+344|伝言|でんごん|Lời nhắn|TRUYỀN NGÔN
+345|報告|ほうこく|Báo cáo|BÁO CÁO
+346|録画|ろくが|Ghi hình, thu hình|LỤC HỌA
+347|混雑|こんざつ|Đông đúc, hỗn loạn|HỖN TẠP
+348|渋滞|じゅうたい|Tắc đường, đình trệ|SÁP TRỆ
+349|衝突|しょうとつ|Va chạm, xung đột|XUNG ĐỘT
+350|被害|ひがい|Thiệt hại, tổn thất|BỊ HẠI
+351|事故|じこ|Tai nạn, sự cố|SỰ CỐ
+352|事件|じけん|Vụ việc, vụ án|SỰ KIỆN
+353|故障|こしょう|Hỏng hóc (máy móc)|CỐ CHƯỚNG
+354|修理|しゅうり|Sửa chữa|TU LÝ
+355|停電|ていでん|Mất điện|ĐÌNH ĐIỆN
+356|調子|ちょうし|Tình trạng, nhịp điệu|ĐIỀU TỬ
+357|緊張|きんちょう|Căng thẳng, hồi hộp|KHẨN TRƯƠNG
+358|自信|じしん|Sự tự tin|TỰ TÍN
+359|自慢|じまん|Tự hào, khoe khoang|TỰ MẠN
+360|感心|かんしん|Cảm phục, khâm phục|CẢM TÂM
+361|感動|かんどう|Xúc động, cảm động|CẢM ĐỘNG
+362|興奮|こうふん|Hưng phấn, kích động|HƯNG PHẤN
+363|感想|かんそう|Cảm tưởng, cảm nghĩ|CẢM TƯỞNG
+364|予想|よそう|Dự đoán|DỰ TƯỞNG
+365|専門|せんもん|Chuyên môn, chuyên ngành|CHUYÊN MÔN
+366|研究|けんきゅう|Nghiên cứu|NGHIÊN CỨU
+367|調査|ちょうさ|Điều tra, khảo sát|ĐIỀU TRA
+368|原因|げんいん|Nguyên nhân|NGUYÊN NHÂN
+369|結果|けっか|Kết quả|KẾT QUẢ
+370|解決|かいけつ|Giải quyết|GIẢI QUYẾT
+371|確認|かくにん|Xác nhận|XÁC NHẬN
+372|利用|りよう|Sử dụng, khai thác|LỢI DỤNG
+373|理解|りかい|Hiểu, thông cảm|LÝ GIẢI
+374|発見|はっけん|Khám phá, phát hiện|PHÁT KIẾN
+375|発明|はつめい|Phát minh|PHÁT MINH
+376|関係|かんけい|Mối quan hệ, liên quan|QUAN HỆ
+377|団体|だんたい|Đoàn thể, tổ chức|ĐOÀN THỂ
+378|選挙|せんきょ|Cuộc bầu cử|TUYỂN CỬ
+379|税金|ぜいきん|Tiền thuế|THUẾ KIM
+380|責任|せきにん|Trách nhiệm|TRÁCH NGHIỆM
+381|書類|しょるい|Tài liệu, hồ sơ, giấy tờ|THƯ LOẠI
+382|題名|だいめい|Tựa đề, nhan đề|ĐỀ DANH
+383|条件|じょうけん|Điều kiện|ĐIỀU KIỆN
+384|締め切り|しめきり|Hạn chót (Deadline)|ĐẾ THIẾT
+385|期間|きかん|Thời hạn, kỳ hạn|KỲ GIAN
+386|倍|ばい|Gấp đôi, bội số|BỘI
+387||くじ|Lá thăm, xổ số|
+388|近道|ちかみち|Đường tắt|CẬN ĐẠO
+389|中心|ちゅうしん|Trung tâm|TRUNG TÂM
+390|辺り|あたり|Vùng lân cận, xung quanh|BIÊN
+391|周り/回り|まわり|Chu vi, xung quanh|CHU/HỒI
+392|穴|あな|Cái lỗ, hang|HUYỆT
+393|列|れつ|Hàng, dãy|LIỆT
+394|幅|はば|Chiều rộng, biên độ|PHÚC
+395|範囲|はんい|Phạm vi|PHẠM VI
+396|内容|ないよう|Nội dung|NỘI DUNG
+397|中身|なかみ|Bên trong, ruột, thực chất|TRUNG THÂN
+398|特徴|とくちょう|Đặc trưng, điểm nổi bật|ĐẶC TRƯNG
+399|普通|ふつう|Bình thường, thông thường|PHỔ THÔNG
+400|当たり前|あたりまえ|Đương nhiên, hiển nhiên|ĐƯƠNG TIỀN
+401|偽|にせ|Đồ giả, giả mạo|NGỤY
+402|別|べつ|Khác, riêng biệt|BIỆT
+403|国籍|こくせき|Quốc tịch|QUỐC TỊCH
+404|東洋|とうよう|Phương Đông|ĐÔNG DƯƠNG
+405|西洋|せいよう|Phương Tây|TÂY DƯƠNG
+406|国際|こくさい|Quốc tế|QUỐC TẾ
+407|自然|しぜん|Tự nhiên, thiên nhiên|TỰ NHIÊN
+408|景色|けしき|Phong cảnh, cảnh sắc|CẢNH SẮC
+409|宗教|しゅうきょう|Tôn giáo|TÔNG GIÁO
+410|愛|あい|Tình yêu|ÁI
+411|届く|とどく|Được gửi tới, chạm tới|GIỚI
+412|届ける|とどける|Giao đến, trình báo|GIỚI
+413||かく|Đổ mồ hôi, gãi, ngáy|
+414||つかむ|Chộp lấy, nắm bắt|
+415|握る|にぎる|Nắm chặt, nắm giữ|ÁC
+416|押さえる|おさえる|Giữ chặt, kìm nén, nắm bắt|ÁP
+417|近づく|ちかづく|Tiến lại gần|CẬN
+418|近づける|ちかづける|Đưa lại gần|CẬN
+419|合う|あう|Gặp, khớp, hợp|HỢP
+420|合わせる|あわせる|Chỉnh cho khớp, hợp sức|HỢP
+421|当たる|あたる|Trúng, chiếu vào|ĐƯƠNG
+422|当てる|あてる|Đoán trúng, áp vào|ĐƯƠNG
+423|比べる|くらべる|So sánh|TỈ
+424|似合う|にあう|Hợp, vừa vặn|TỰ HỢP
+425|似る|にる|Giống nhau|TỰ
+426|似せる|にせる|Bắt chước, làm giống|TỰ
+427|分かれる|わかれる|Chia nhánh, tách ra|PHÂN
+428|分ける|わける|Chia ra, phân loại|PHÂN
+429|足す|たす|Cộng thêm, bổ sung|TÚC
+430|引く|ひく|Trừ bớt, kéo, tra từ điển|DẪN
+431|増える|ふえる|Tăng lên, gia tăng|TĂNG
+432|増やす|ふやす|Làm tăng thêm|TĂNG
+433|減る|へる|Giảm xuống, vơi đi|GIẢM
+434|減らす|へらす|Cắt giảm|GIẢM
+435|変わる|かわる|Thay đổi, biến đổi|BIẾN
+436|変える|かえる|Làm thay đổi|BIẾN
+437|替わる/代わる/換わる|かわる|Thay thế, đổi ca|THẾ/ĐẠI/HOÁN
+438|替える/代える/換える|かえる|Đổi, thay mới|THẾ/ĐẠI/HOÁN
+439|返る|かえる|Được trả lại|PHẢN
+440|返す|かえす|Trả lại|PHẢN
+441|譲る|ゆずる|Nhường, chuyển nhượng|NHƯỢNG
+442|助かる|たすかる|Được cứu sống, đỡ vất vả|TRỢ
+443|助ける|たすける|Cứu giúp, hỗ trợ|TRỢ
+444||いじめる|Bắt nạt, ăn hiếp|
+445||だます|Lừa gạt, đánh lừa|
+446|盗む|ぬすむ|Ăn cắp, lấy trộm|ĐẠO
+447|刺さる|ささる|Cắm vào, mắc, hóc|THỨ
+448|刺す|さす|Đâm, chích, đốt|THỨ
+449|殺す|ころす|Giết, sát hại|SÁT
+450|隠れる|かくれる|Trốn, ẩn nấp|ẨN
+451|隠す|かくす|Che giấu, giấu giếm|ẨN
+452|埋まる|うまる|Bị chôn vùi, lấp kín|MAI
+453|埋める|うめる|Chôn lấp, bù đắp|MAI
+454|囲む|かこむ|Bao quanh, vây quanh|VI
+455|詰まる|つまる|Bị tắc nghẽn, chật cứng|CẬT
+456|詰める|つめる|Nhét đầy, rút ngắn|CẬT
+457|開く|ひらく|Mở ra, tổ chức|KHAI
+458|閉じる|とじる|Đóng lại, nhắm mắt|BẾ
+459|飛ぶ|とぶ|Bay, nhảy qua|PHI
+460|飛ばす|とばす|Cho bay, bỏ qua|PHI
+461|振る|ふる|Vẫy, lắc, từ chối tình cảm|CHẤN
+462||めくる|Lật (trang giấy, lịch)|
+463|見かける|みかける|Bắt gặp, tình cờ trông thấy|KIẾN
+464|確かめる|たしかめる|Xác nhận lại cho chắc|XÁC
+465|試す|ためす|Thử nghiệm, dùng thử|THÍ
+466|繰り返す|くりかえす|Lặp đi lặp lại|SÀO PHẢN
+467|訳す|やくす|Dịch thuật|DỊCH
+468|行う|おこなう|Tiến hành, tổ chức|HÀNH
+469|間違う|まちがう|Nhầm lẫn, sai|GIAN VI
+470|間違える|まちがえる|Làm sai, nhầm|GIAN VI
+471|許す|ゆるす|Tha thứ, cho phép|HỨA
+472|慣れる|なれる|Quen với, thích nghi|QUÁN
+473|慣らす|ならす|Tập cho quen|QUÁN
+474|立つ|たつ|Đứng, bốc lên|LẬP
+475|立てる|たてる|Dựng đứng, lập kế hoạch|LẬP
+476|建つ|たつ|Được xây dựng nên|KIẾN
+477|建てる|たてる|Xây dựng|KIẾN
+478|育つ|そだつ|Lớn lên, trưởng thành|DỤC
+479|育てる|そだてる|Nuôi dạy, trồng trọt|DỤC
+480|生える|はえる|Mọc lên (cây, răng, râu)|SINH
+481|生やす|はやす|Để mọc, nuôi (râu)|SINH
+482|汚れる|よごれる|Bị bẩn, vấy bẩn|Ô
+483|汚す|よごす|Làm bẩn|Ô
+484|壊れる|こわれる|Bị hỏng, vỡ|HOẠI
+485|壊す|こわす|Làm hỏng, phá hủy|HOẠI
+486|割れる|われる|Bị vỡ, nứt|CÁT
+487|割る|わる|Làm vỡ, chia|CÁT
+488|折れる|おれる|Bị gãy, gấp khúc|CHIẾT
+489|折る|おる|Bẻ gãy, gấp giấy|CHIẾT
+490|破れる|やぶれる|Bị rách, vỡ mộng|PHÁ
+491|破る|やぶる|Xé rách, phá kỷ lục/lời hứa|PHÁ
+492|曲がる|まがる|Cong, rẽ, quẹo|KHÚC
+493|曲げる|まげる|Uốn cong, bẻ cong|KHÚC
+494|外れる|はずれる|Tuột ra, trật, trượt|NGOẠI
+495|外す|はずす|Tháo ra, bỏ lỡ|NGOẠI
+496|揺れる|ゆれる|Rung lắc, đung đưa|DAO
+497|揺らす|ゆらす|Làm rung lắc|DAO
+498|流れる|ながれる|Chảy, trôi qua|LƯU
+499|流す|ながす|Xả nước, làm trôi|LƯU
+500|濡れる|ぬれる|Bị ướt|NHU
+501|濡らす|ぬらす|Làm ướt|NHU
+502|迷う|まよう|Lạc đường, phân vân|MÊ
+503|悩む|なやむ|Khổ tâm, trăn trở|NÃO
+504|慌てる|あわてる|Hoảng hốt, vội vàng|HOẢNG
+505|覚める|さめる|Tỉnh giấc, tỉnh ngộ|GIÁC
+506|覚ます|さます|Đánh thức, làm tỉnh|GIÁC
+507|眠る|ねむる|Ngủ|MIÊN
+508|祈る|いのる|Cầu nguyện|KÌ
+509|祝う|いわう|Chúc mừng, mừng lễ|CHÚC
+510|感じる|かんじる|Cảm thấy, cảm nhận|CẢM
+511||クラスメート|Bạn cùng lớp|
+512||グループ|Nhóm|
+513||チーム|Đội, nhóm|
+514||プロフェッショナル (プロ)|Chuyên nghiệp, nhà nghề|
+515||アマチュア (アマ)|Nghiệp dư, không chuyên|
+516||トレーニング|Đào tạo, rèn luyện|
+517||マッサージ|Xoa bóp, mát-xa|
+518||アドバイス|Lời khuyên|
+519||アイデア/アイディア|Ý tưởng|
+520||トップ|Đứng đầu, đỉnh cao|
+521||スピード|Tốc độ|
+522||ラッシュ|Giờ cao điểm|
+523||バイク|Xe máy, mô tô|
+524||ヘルメット|Mũ bảo hiểm|
+525||コンタクトレンズ|Kính áp tròng|
+526||ガラス|Kính, thủy tinh|
+527||プラスチック|Nhựa|
+528||ベランダ|Ban công|
+529||ペット|Thú cưng|
+530||ベンチ|Ghế băng dài|
+531||デザイン|Thiết kế|
+532||バーゲンセール|Đợt bán giảm giá|
+533||パート|Làm bán thời gian, một phần|
+534||コンビニエンスストア (コンビニ)|Cửa hàng tiện lợi|
+535||レジ|Quầy thu ngân, máy tính tiền|
+536||レシート|Hóa đơn, biên lai|
+537||インスタント|Đồ ăn liền, tức thì|
+538||ファストフード|Thức ăn nhanh|
+539||フルーツ|Trái cây, hoa quả|
+540||デザート|Món tráng miệng|
+541||インターネット|Mạng Internet|
+542||チャイム|Chuông báo|
+543||アナウンス|Thông báo phát thanh|
+544||メッセージ|Tin nhắn, thông điệp|
+545||パンフレット|Tờ rơi, tập sách quảng cáo|
+546||カード|Thẻ, thiệp|
+547||インタビュー|Phỏng vấn|
+548||アンケート|Bảng khảo sát, điều tra|
+549||データ|Dữ liệu, số liệu|
+550||パーセント|Phần trăm (%)|
+551|濃い|こい|Đậm, đặc|NỒNG
+552|薄い|うすい|Nhạt, mỏng, thưa|BẠC
+553|酸っぱい|すっぱい|Chua|TOAN
+554|臭い|くさい|Hôi, thối, đáng ngờ|XÚ
+555||おかしい|Buồn cười, kỳ quặc|
+556||かっこいい|Bảnh bao, ngầu, đẹp|
+557||うまい|Ngon, giỏi, khéo léo|
+558|親しい|したしい|Thân thiết, gần gũi|THÂN
+559|詳しい|くわしい|Chi tiết, am hiểu tường tận|TƯỜNG
+560|細かい|こまかい|Nhỏ nhặt, chi tiết, tiền lẻ|TẾ
+561|浅い|あさい|Nông, cạn|THIỂN
+562|固い/硬い|かたい|Cứng, chắc, cứng nhắc|CỐ/NGẠNH
+563||ぬるい|Nguội, âm ấm|
+564||まぶしい|Chói mắt, rực rỡ|
+565|蒸し暑い|むしあつい|Oi bức, nóng ẩm|CHƯNG THỬ
+566|清潔な|せいけつな|Sạch sẽ, hợp vệ sinh|THANH KHIẾT
+567|新鮮な|しんせんな|Tươi mới, trong lành|TÂN TIÊN
+568|豊かな|ゆたかな|Giàu có, trù phú, dồi dào|PHONG
+569|立派な|りっぱな|Tuyệt vời, đàng hoàng, xuất sắc|LẬP PHÁI
+570|正確な|せいかくな|Chính xác|CHÍNH XÁC
+571|確かな|たしかな|Chắc chắn, xác thực|XÁC
+572|重要な|じゅうような|Quan trọng, trọng yếu|TRỌNG YẾU
+573|必要な|ひつような|Cần thiết, tất yếu|TẤT YẾU
+574||もったいない|Lãng phí, uổng phí|
+575||すごい|Tuyệt vời, dữ dội, kinh khủng|
+576||ひどい|Tồi tệ, quá đáng, khốc liệt|
+577|激しい|はげしい|Mãnh liệt, dữ dội|KÍCH
+578||そっくりな|Giống hệt như đúc|
+579|急な|きゅうな|Đột ngột, gấp, dốc đứng|CẤP
+580|適当な|てきとうな|Phù hợp, thích hợp / Qua loa|THÍCH ĐƯƠNG
+581|特別な|とくべつな|Đặc biệt|ĐẶC BIỆT
+582|完全な|かんぜんな|Hoàn toàn, hoàn hảo|HOÀN TOÀN
+583|盛んな|さかんな|Thịnh vượng, sôi nổi|THỊNH
+584|様々な|さまざまな|Đa dạng, nhiều loại|DẠNG
+585|可能な|かのうな|Khả thi, có thể|KHẢ NĂNG
+586|不可能な|ふかのうな|Bất khả thi, không thể|BẤT KHẢ NĂNG
+587|基本的な|きほんてきな|Mang tính cơ bản|CƠ BẢN ĐÍCH
+588|国際的な|こくさいてきな|Mang tính quốc tế|QUỐC TẾ ĐÍCH
+589||ばらばらな|Rời rạc, phân tán, lộn xộn|
+590||ぼろぼろな|Rách nát, tả tơi, kiệt sức|
+591|非常に|ひじょうに|Rất, vô cùng|PHI THƯỜNG
+592|大変|たいへん|Rất, cực kỳ / Vất vả|ĐẠI BIẾN
+593||ほとんど|Hầu như, gần như|
+594|大体|だいたい|Đại khái, khoảng chừng|ĐẠI THỂ
+595||かなり|Khá là, tương đối|
+596||ずいぶん|Đáng kể, khá nhiều|
+597||けっこう|Khá, tương đối, đủ rồi|
+598|大分|だいぶ・だいぶん|Khá nhiều, đáng kể|ĐẠI PHÂN
+599||もっと|Hơn nữa, thêm nữa|
+600||すっかり|Hoàn toàn, sạch trơn|
+601|一杯|いっぱい|Đầy, nhiều, hết sức|NHẤT BÔI
+602||ぎりぎり|Sát nút, vừa kịp lúc|
+603||ぴったり|Vừa khít, chuẩn xác|
+604||たいてい|Thông thường, đa phần|
+605|同時に|どうじに|Đồng thời, cùng lúc|ĐỒNG THỜI
+606|前もって|まえもって|Trước, sẵn từ trước|TIỀN
+607||すぐ|Ngay lập tức|
+608||もうすぐ|Sắp sửa, chẳng mấy chốc|
+609|突然|とつぜん|Đột nhiên, bất thình lình|ĐỘT NHIÊN
+610|あっと言う間|あっというま|Trong chớp mắt, loáng một cái|NGÔN GIAN
+611|いつの間にか|いつのまにか|Từ lúc nào không hay|GIAN
+612||しばらく|Một lát, một thời gian|
+613||ずっと|Suốt, mãi, hơn hẳn|
+614|相変わらず|あいかわらず|Vẫn như mọi khi|TƯƠNG BIẾN
+615|次々に/と|つぎつぎに/と|Lần lượt, nối tiếp nhau|THỨ
+616||どんどん|Nhanh chóng, dồn dập|
+617||ますます|Ngày càng, càng lúc càng|
+618||やっと|Cuối cùng thì (sau nhiều vất vả)|
+619||とうとう|Cuối cùng thì (kết cục)|
+620||ついに|Cuối cùng, rốt cuộc|
+621||もちろん|Tất nhiên, dĩ nhiên|
+622||やはり|Quả nhiên là, vẫn như dự đoán|
+623||きっと|Chắc chắn, nhất định|
+624||ぜひ|Nhất định, rất mong|
+625||なるべく|Cố gắng hết mức có thể|
+626|案外|あんがい|Không ngờ tới, ngoài dự tính|ÁN NGOẠI
+627||もしかすると/もしかしたら|Có lẽ, biết đâu chừng|
+628||まさか|Không đời nào, chẳng lẽ lại|
+629||うっかり|Vô tình, lơ đãng, quên khuấy|
+630||つい|Lỡ, buột miệng, vô tình|
+631|思わず|おもわず|Bất giác, không chủ đích|TƯ
+632||ほっと|Thở phào nhẹ nhõm|
+633||いらいら|Sốt ruột, bực bội, cáu gắt|
+634||のんびり|Thong thả, nhàn nhã|
+635|実は|じつは|Thực ra là|THỰC
+636|読書|どくしょ|Việc đọc sách|ĐỘC THƯ
+637|演奏|えんそう|Biểu diễn nhạc cụ|DIỄN TẤU
+638|芸術|げいじゅつ|Nghệ thuật|NGHỆ THUẬT
+639|検査|けんさ|Kiểm tra, xét nghiệm|KIỂM TRA
+640|血液|けつえき|Máu, huyết dịch|HUYẾT DỊCH
+641|治療|ちりょう|Điều trị, trị liệu|TRỊ LIỆU
+642|症状|しょうじょう|Triệu chứng|CHỨNG TRẠNG
+643|予防|よぼう|Phòng ngừa, dự phòng|DỰ PHÒNG
+644|栄養|えいよう|Dinh dưỡng|VINH DƯỠNG
+645|手術|しゅじゅつ|Phẫu thuật|THỦ THUẬT
+646|死亡|しぼう|Tử vong, qua đời|TỬ VONG
+647|命|いのち|Sinh mạng, tính mạng|MỆNH
+648|一生|いっしょう|Cả cuộc đời, suốt đời|NHẤT SINH
+649|誤解|ごかい|Hiểu lầm|NGỘ GIẢI
+650|後悔|こうかい|Hối hận|HẬU HỐI
+651|訳|わけ|Lý do, nguyên cớ, ý nghĩa|DỊCH
+652|態度|たいど|Thái độ|THÁI ĐỘ
+653|癖|くせ|Thói quen xấu, tật|PHÍCH
+654|礼儀|れいぎ|Lễ nghi, phép lịch sự|LỄ NGHI
+655|文句|もんく|Lời phàn nàn, kêu ca|VĂN CÚ
+656|表情|ひょうじょう|Biểu cảm khuôn mặt|BIỂU TÌNH
+657|表面|ひょうめん|Bề mặt, vẻ bề ngoài|BIỂU DIỆN
+658|禁煙|きんえん|Cấm hút thuốc|CẤM YÊN
+659|禁止|きんし|Nghiêm cấm|CẤM CHỈ
+660|完成|かんせい|Hoàn thành, hoàn thiện|HOÀN THÀNH
+661|課題|かだい|Đề tài, nhiệm vụ, bài tập|KHÓA ĐỀ
+662|例外|れいがい|Ngoại lệ|LỆ NGOẠI
+663|基本|きほん|Cơ bản, nền tảng|CƠ BẢN
+664|記録|きろく|Ghi chép, kỷ lục|KỶ LỤC
+665|状態|じょうたい|Trạng thái, tình trạng|TRẠNG THÁI
+666|出来事|できごと|Sự việc, sự kiện xảy ra|XUẤT LAI SỰ
+667|場面|ばめん|Tình huống, hiện trường, cảnh phim|TRƯỜNG DIỆN
+668|機会|きかい|Cơ hội, dịp|CƠ HỘI
+669|距離|きょり|Cự ly, khoảng cách|CỰ LY
+670|提案|ていあん|Đề án, đề xuất|ĐỀ ÁN
+671|やり取り|やりとり|Sự trao đổi, qua lại|THỦ
+672|知識|ちしき|Kiến thức, tri thức|TRI THỨC
+673|実力|じつりょく|Thực lực, năng lực thực tế|THỰC LỰC
+674|手段|しゅだん|Phương tiện, cách thức|THỦ ĐOẠN
+675|代表|だいひょう|Đại diện, tiêu biểu|ĐẠI BIỂU
+676|影響|えいきょう|Ảnh hưởng|ẢNH HƯỞNG
+677|効果|こうか|Hiệu quả|HIỆU QUẢ
+678|印象|いんしょう|Ấn tượng|ẤN TƯỢNG
+679|印|しるし|Dấu hiệu, ký hiệu|ẤN
+680|合図|あいず|Ám hiệu, tín hiệu ra hiệu|HỢP ĐỒ
+681|共通|きょうつう|Điểm chung, phổ biến|CỘNG THÔNG
+682|強調|きょうちょう|Nhấn mạnh|CƯỜNG ĐIỆU
+683|省略|しょうりゃく|Lược bớt, tỉnh lược|TỈNH LƯỢC
+684|挑戦|ちょうせん|Thử thách, thách thức|THIÊU CHIẾN
+685|やる気|やるき|Động lực, tinh thần làm việc|KHÍ
+686|勇気|ゆうき|Dũng khí, lòng can đảm|DŨNG KHÍ
+687|資格|しかく|Tư cách, chứng chỉ, bằng cấp|TƯ CÁCH
+688|申請|しんせい|Đăng ký, nộp đơn xin|THÂN THỈNH
+689|本人|ほんにん|Đương sự, chính chủ|BẢN THÂN
+690|契約|けいやく|Hợp đồng, giao kèo|KHIẾT ƯỚC
+691|証明|しょうめい|Chứng minh, xác nhận|CHỨNG MINH
+692|変更|へんこう|Thay đổi, điều chỉnh|BIẾN CANH
+693|保存|ほぞん|Lưu trữ, bảo quản|BẢO TỒN
+694|保護|ほご|Bảo hộ, bảo vệ|BẢO HỘ
+695|環境|かんきょう|Môi trường|HOÀN CẢNH
+696|資源|しげん|Tài nguyên|TƯ NGUYÊN
+697|不足|ふそく|Thiếu hụt, không đủ|BẤT TÚC
+698|平均|へいきん|Trung bình, bình quân|BÌNH QUÂN
+699|割合|わりあい|Tỷ lệ, tương đối|CÁT HỢP
+700|商売|しょうばい|Buôn bán, kinh doanh|THƯƠNG MẠI
+701|商品|しょうひん|Sản phẩm, hàng hóa|THƯƠNG PHẨM
+702|質|しつ|Chất lượng, bản chất|CHẤT
+703|型|かた|Kiểu dáng, mẫu, khuôn|HÌNH
+704|生産|せいさん|Sản xuất|SINH SẢN
+705|消費|しょうひ|Tiêu dùng, tiêu thụ|TIÊU PHÍ
+706|物価|ぶっか|Vật giá, giá cả sinh hoạt|VẬT GIÁ
+707|倒産|とうさん|Phá sản|ĐẢO SẢN
+708|携帯|けいたい|Mang theo, điện thoại di động|HUỀ ĐỚI
+709|現代|げんだい|Hiện đại, thời nay|HIỆN ĐẠI
+710|世紀|せいき|Thế kỷ|THẾ KỶ
+711|文化|ぶんか|Văn hóa|VĂN HÓA
+712|都市|とし|Đô thị, thành phố|ĐÔ THỊ
+713|地方|ちほう|Địa phương, vùng miền|ĐỊA PHƯƠNG
+714|戦争|せんそう|Chiến tranh|CHIẾN TRANH
+715|平和|へいわ|Hòa bình|BÌNH HÒA
+716|上る|のぼる|Leo lên, tăng lên|THƯỢNG
+717|下る|くだる|Đi xuống, hạ xuống|HẠ
+718|進む|すすむ|Tiến lên, tiến triển|TIẾN
+719|進める|すすめる|Đẩy mạnh, thúc đẩy|TIẾN
+720|通る|とおる|Đi qua, được thông qua|THÔNG
+721|通す|とおす|Cho đi qua, xuyên suốt|THÔNG
+722|越える/超える|こえる|Vượt qua, vượt quá|VIỆT/SIÊU
+723|過ぎる|すぎる|Đi qua, quá mức|QUÁ
+724|過ごす|すごす|Trải qua, tiêu khiển thời gian|QUÁ
+725|移る|うつる|Di chuyển, lây lan|DI
+726|移す|うつす|Chuyển sang, dời chỗ|DI
+727|連れる|つれる|Dẫn theo, đưa đi cùng|LIÊN
+728|寄る|よる|Ghé qua, tạt vào|KÍ
+729|寄せる|よせる|Đưa lại gần, gửi gắm|KÍ
+730|与える|あたえる|Ban cho, cung cấp, gây ra|DỰ
+731|得る|える|Đạt được, thu được|ĐẮC
+732|向く|むく|Hướng về, thích hợp với|HƯỚNG
+733|向ける|むける|Chĩa về, hướng về phía|HƯỚNG
+734|勧める|すすめる|Khuyên, mời, gợi ý|KHUYẾN
+735|薦める|すすめる|Tiến cử, giới thiệu|TIẾN
+736|任せる|まかせる|Giao phó, ủy thác|NHIỆM
+737|守る|まもる|Bảo vệ, tuân thủ|THỦ
+738|争う|あらそう|Tranh giành, thi đua|TRANH
+739|望む|のぞむ|Mong muốn, ước ao|VỌNG
+740|信じる|しんじる|Tin tưởng|TÍN
+741|通じる|つうじる|Thông suốt, thấu hiểu|THÔNG
+742|飽きる|あきる|Chán, ngấy|BÃO
+743|思いつく|おもいつく|Nảy ra ý tưởng, chợt nghĩ ra|TƯ
+744|思いやる|おもいやる|Cảm thông, quan tâm|TƯ
+745|熱中する|ねっちゅうする|Mải mê, say mê|NHIỆT TRUNG
+746|暮らす|くらす|Sinh sống|MỘ
+747|巻く|まく|Quấn, cuộn, quàng|QUYỂN
+748|結ぶ|むすぶ|Buộc, thắt, ký kết|KẾT
+749|済む|すむ|Xong xuôi, hoàn tất|TẾ
+750|済ませる/済ます|すませる/すます|Làm cho xong, giải quyết xong|TẾ
+751|出来る|できる|Có thể, hoàn thành, được xây|XUẤT LAI
+752|切れる|きれる|Đứt, hết, hết hạn, sắc bén|THIẾT
+753|切らす|きらす|Dùng hết, làm cạn|THIẾT
+754|伝わる|つたわる|Được truyền đạt, lan truyền|TRUYỀN
+755|伝える|つたえる|Truyền đạt, nhắn lại|TRUYỀN
+756|続く|つづく|Tiếp diễn, nối tiếp|TỤC
+757|続ける|つづける|Tiếp tục làm|TỤC
+758||つながる|Được kết nối, thông nhau|
+759||つなぐ|Nối lại, nắm tay|
+760||つなげる|Kết nối lại với nhau|
+761|伸びる|のびる|Dài ra, cao lên, tiến bộ|THÂN
+762|伸ばす|のばす|Nuôi dài, kéo căng, phát triển|THÂN
+763|延びる|のびる|Bị hoãn lại, kéo dài thêm|DUYÊN
+764|延ばす|のばす|Trì hoãn, gia hạn|DUYÊN
+765|重なる|かさなる|Chồng chất lên nhau, trùng nhau|TRỌNG
+766|重ねる|かさねる|Xếp chồng lên, lặp lại|TRỌNG
+767|広がる|ひろがる|Lan rộng, trải rộng|QUẢNG
+768|広げる|ひろげる|Mở rộng, trải ra|QUẢNG
+769|載る|のる|Được đặt lên, được đăng báo|TẢI
+770|載せる|のせる|Đặt lên, đăng tải|TẢI
+771||そろう|Tập hợp đủ, đồng đều|
+772||そろえる|Chuẩn bị đủ, sắp cho đều|
+773||まとまる|Được thống nhất, gom lại|
+774||まとめる|Tổng hợp, gom lại, sắp xếp|
+775|付く|つく|Dính vào, kèm theo, bật sáng|PHÓ
+776|付ける|つける|Gắn vào, bôi, bật điện|PHÓ
+777||たまる|Tích tụ, đọng lại, dồn lại|
+778||ためる|Tích lũy, tiết kiệm|
+779|交じる/混じる|まじる|Lẫn vào, pha trộn|GIAO/HỖN
+780|交ざる/混ざる|まざる|Hòa lẫn vào nhau|GIAO/HỖN
+781|交ぜる/混ぜる|まぜる|Trộn lẫn, khuấy đều|GIAO/HỖN
+782|解ける/溶ける|とける|Tan chảy, được giải quyết, tuột dây|GIẢI/DUNG
+783|解く/溶かす|とく/とかす|Giải (bài toán), hòa tan|GIẢI/DUNG
+784|含む|ふくむ|Bao gồm, chứa đựng|HÀM
+785|含める|ふくめる|Tính gộp cả, bao gồm vào|HÀM
+786|抜ける|ぬける|Rụng, tuột ra, thoát khỏi|BẠT
+787|抜く|ぬく|Nhổ ra, rút ra, vượt qua|BẠT
+788|現れる|あらわれる|Xuất hiện, lộ diện|HIỆN
+789|現す|あらわす|Bộc lộ, thể hiện ra|HIỆN
+790|表れる|あらわれる|Biểu hiện ra ngoài|BIỂU
+791|表す|あらわす|Biểu thị, đại diện cho|BIỂU
+792|散る|ちる|Rơi rụng, tàn phai|TÁN
+793|散らす|ちらす|Làm rơi rụng, phân tán|TÁN
+794|明ける|あける|Hết (mùa mưa), bước sang năm mới, trời sáng|MINH
+795|差す|さす|Giương (ô), chiếu (nắng), nhỏ (thuốc mắt)|SAI
+796||パートナー|Đối tác, bạn đồng hành|
+797||リーダー|Người lãnh đạo, trưởng nhóm|
+798||ボランティア|Tình nguyện viên, hoạt động tình nguyện|
+799||コミュニケーション|Giao tiếp|
+800||ユーモア|Sự hài hước|
+801||ショック|Cú sốc, choáng váng|
+802||ストレス|Căng thẳng (Stress)|
+803||バランス|Sự cân bằng|
+804||レベル|Trình độ, cấp độ|
+805||アップ|Tăng lên, nâng cấp|
+806||ダウン|Giảm xuống, suy sụp|
+807||プラス|Dấu cộng, điểm cộng, có lợi|
+808||マイナス|Dấu trừ, điểm trừ, bất lợi|
+809||イメージ|Hình ảnh, ấn tượng|
+810||コンテスト|Cuộc thi|
+811||マスコミ|Truyền thông đại chúng|
+812||プライバシー|Sự riêng tư|
+813||オフィス|Văn phòng|
+814||ルール|Luật lệ, quy tắc|
+815||マナー|Tác phong, phép lịch sự|
+816||ミス|Lỗi, sai sót|
+817||スケジュール|Lịch trình|
+818||タイトル|Tiêu đề, danh hiệu|
+819||テーマ|Chủ đề, đề tài|
+820||ストーリー|Cốt truyện, câu chuyện|
+821||ヒット|Thành công vang dội (Hit)|
+822||ブランド|Thương hiệu, nhãn hiệu|
+823||レンタル|Sự thuê mướn|
+824||リサイクル|Tái chế|
+825||ラベル|Nhãn dán|
+826||タイプ|Kiểu, mẫu người|
+827||スタイル|Phong cách, vóc dáng|
+828||セット|Bộ, cài đặt|
+829||ウイルス|Vi-rút|
+830||ロボット|Người máy (Robot)|
+831||エネルギー|Năng lượng|
+832||デジタル|Kỹ thuật số (Digital)|
+833||マイク (マイクロホン)|Mic-rô|
+834||ブレーキ|Phanh, thắng xe|
+835||ペンキ|Sơn|
+836|炊ける|たける|(Cơm) được nấu chín|XUY
+837|炊く|たく|Nấu (cơm)|XUY
+838|煮える|にえる|Được ninh nhừ, nấu chín|CHỬ
+839|煮る|にる|Ninh, kho, hầm|CHỬ
+840|炒める|いためる|Xào, đảo trên chảo|SAO
+841|焼ける|やける|Được nướng chín, cháy nắng|THIÊU
+842|焼く|やく|Nướng, rán|THIÊU
+843||ゆでる|Luộc|
+844|揚げる|あげる|Chiên ngập dầu, rán|DƯƠNG
+845|蒸す|むす|Hấp|CHƯNG
+846||ぐっすり|Ngủ say, ngon giấc|
+847||きちんと|Ngay ngắn, chỉnh tề, đàng hoàng|
+848||しっかり|Chắc chắn, vững vàng, chăm chỉ|
+849||はっきり|Rõ ràng, dứt khoát|
+850||じっと|Chăm chú, đứng yên bất động|
+851||そっと|Nhẹ nhàng, khẽ khàng|
+852|別々に|べつべつに|Riêng biệt, mỗi người một nơi|BIỆT
+853||それぞれ|Mỗi, từng cái một|
+854|互いに|たがいに|Lẫn nhau, cùng nhau|HỖ
+855|直接|ちょくせつ|Trực tiếp|TRỰC TIẾP
+856|本当に|ほんとうに|Thực sự, quả thật|BẢN ĐƯƠNG
+857|必ず|かならず|Chắc chắn, nhất định (100%)|TẤT
+858|絶対|ぜったい|Tuyệt đối, nhất quyết|TUYỆT ĐỐI
+859|特に|とくに|Đặc biệt là|ĐẶC
+860||ただ|Chỉ là, miễn phí|
+861|少なくとも|すくなくとも|Ít nhất là, tối thiểu|THIỂU
+862|決して|けっして|Tuyệt đối không bao giờ|QUYẾT
+863|少しも|すこしも|Một chút cũng không|THIỂU
+864||ちっとも|Chẳng chút nào (+ phủ định)|
+865|全く|まったく|Hoàn toàn, thực sự|TOÀN
+866||とても|Rất, vô cùng|
+867||どんなに|Dù thế nào đi chăng nữa|
+868||どうしても|Dù thế nào cũng, bằng mọi giá|
+869||まるで|Cứ như thể là, hệt như|
+870|一体|いったい|Rốt cuộc là (nhấn mạnh câu hỏi)|NHẤT THỂ
+871|別に|べつに|Cũng không hẳn, chẳng có gì đặc biệt|BIỆT
+872||たった|Chỉ vẻn vẹn|
+873||ほんの|Chỉ một chút|
+874||それで|Vì thế, rồi sao nữa|
+875||そこで|Do đó, chính vì vậy|
+876||そのうえ|Hơn thế nữa, thêm vào đó|
+877||また|Lại nữa, đồng thời, và|
+878||または|Hoặc là|
+879||それとも|Hay là (dùng trong câu hỏi lựa chọn)|
+880||つまり|Tóm lại là, nói cách khác là|
+`.trim();
+
+        const ALL_WORDS = RAW_VOCAB_DATA.split('\n').map(line => {
+            const [stt, kanji, kana, meaning, hanviet] = line.split('|');
+            return {
+                id: parseInt(stt, 10),
+                kanji: kanji.trim(),
+                kana: kana.trim(),
+                meaning: meaning.trim(),
+                hanviet: (hanviet || '').trim()
+            };
+        });
+
+        let learnedSet = new Set(JSON.parse(localStorage.getItem('n3_learned_880') || '[]'));
+        let starredSet = new Set(JSON.parse(localStorage.getItem('n3_starred_880') || '[]'));
+
+        function saveProgress() {
+            localStorage.setItem('n3_learned_880', JSON.stringify([...learnedSet]));
+            localStorage.setItem('n3_starred_880', JSON.stringify([...starredSet]));
+            updateHeaderProgress();
+        }
+
+        function updateHeaderProgress() {
+            const count = learnedSet.size;
+            const pct = ((count / ALL_WORDS.length) * 100).toFixed(1);
+            document.getElementById('mastered-count-text').textContent =
+                `Đã thuộc: ${count} / ${ALL_WORDS.length} từ (${pct}%)`;
+            document.getElementById('mastered-bar').style.width = `${pct}%`;
+        }
+
+        const rangeSelect = document.getElementById('range-select');
+        rangeSelect.innerHTML = `<option value="all">Toàn bộ 880 từ N3</option>`;
+        for (let start = 1; start <= 880; start += 50) {
+            const end = Math.min(880, start + 49);
+            const lessonNum = Math.ceil(start / 50);
+            rangeSelect.innerHTML += `<option value="${start}-${end}">Bài ${lessonNum}: Từ ${start} – ${end}</option>`;
+        }
+
+        let filteredWords = [...ALL_WORDS];
+        let fcIndex = 0;
+
+        function applyFilter() {
+            const rangeVal = rangeSelect.value;
+            const statusVal = document.getElementById('status-select').value;
+
+            filteredWords = ALL_WORDS.filter(w => {
+                if (rangeVal !== 'all') {
+                    const [minId, maxId] = rangeVal.split('-').map(Number);
+                    if (w.id < minId || w.id > maxId) return false;
+                }
+                if (statusVal === 'unlearned' && learnedSet.has(w.id)) return false;
+                if (statusVal === 'learned' && !learnedSet.has(w.id)) return false;
+                if (statusVal === 'starred' && !starredSet.has(w.id)) return false;
+                return true;
+            });
+
+            if (filteredWords.length === 0) filteredWords = [...ALL_WORDS];
+            fcIndex = 0;
+            renderFlashcard();
+            nextQuizQuestion();
+            renderTable();
+        }
+
+        // =========================================================================
+        // 4. FLASHCARD 3D & PHÁT ÂM
+        // =========================================================================
+        const card3DEl = document.getElementById('flashcard-3d');
+
+        function renderFlashcard() {
+            card3DEl.classList.remove('flipped');
+            const word = filteredWords[fcIndex] || ALL_WORDS[0];
+
+            document.getElementById('fc-stt').textContent =
+                `Từ #${word.id} (${fcIndex + 1}/${filteredWords.length})`;
+            document.getElementById('fc-stt-back').textContent = `Từ #${word.id}`;
+
+            document.getElementById('fc-front-main').textContent = word.kanji || word.kana;
+            document.getElementById('fc-front-sub').textContent =
+                word.kanji ? 'Nhấn vào thẻ (hoặc Space) để xem cách đọc & nghĩa' : '(Từ thuần Hiragana / Katakana)';
+
+            document.getElementById('fc-back-reading').textContent = word.kana;
+            const hvEl = document.getElementById('fc-back-hv');
+            if (word.hanviet) {
+                hvEl.style.display = 'inline-block';
+                hvEl.textContent = `Âm Hán Việt: ${word.hanviet}`;
+            } else {
+                hvEl.style.display = 'none';
+            }
+            document.getElementById('fc-back-meaning').textContent = word.meaning;
+            document.getElementById('fc-back-kanji').textContent =
+                word.kanji ? `Chữ Hán: ${word.kanji}` : `Cách viết: ${word.kana}`;
+
+            const starBtn = document.getElementById('fc-star-btn');
+            starBtn.textContent = starredSet.has(word.id) ? '★' : '☆';
+            starBtn.classList.toggle('starred', starredSet.has(word.id));
+
+            const learnedBtn = document.getElementById('btn-mark-learned');
+            const isLearned = learnedSet.has(word.id);
+            learnedBtn.textContent = isLearned ? '✅ Đã thuộc từ này' : '⬜ Đánh dấu Đã thuộc';
+            learnedBtn.classList.toggle('learned-active', isLearned);
+        }
+
+        function flipCard() { card3DEl.classList.toggle('flipped'); }
+        function moveCard(step) {
+            fcIndex = (fcIndex + step + filteredWords.length) % filteredWords.length;
+            renderFlashcard();
+        }
+        function shuffleDeck() {
+            filteredWords.sort(() => Math.random() - 0.5);
+            fcIndex = 0;
+            renderFlashcard();
+        }
+        function toggleLearnedCurrent() {
+            const word = filteredWords[fcIndex];
+            if (!word) return;
+            if (learnedSet.has(word.id)) learnedSet.delete(word.id);
+            else learnedSet.add(word.id);
+            saveProgress();
+            renderFlashcard();
+            renderTable();
+        }
+        function toggleStarCurrent() {
+            const word = filteredWords[fcIndex];
+            if (!word) return;
+            if (starredSet.has(word.id)) starredSet.delete(word.id);
+            else starredSet.add(word.id);
+            saveProgress();
+            renderFlashcard();
+            renderTable();
+        }
+
+        function speakWord(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const cleanText = text.split('/')[0].split('(')[0].replace('→', '').trim();
+            const utter = new SpeechSynthesisUtterance(cleanText);
+            utter.lang = 'ja-JP';
+            utter.rate = 0.92;
+            window.speechSynthesis.speak(utter);
+        }
+        function speakCurrentWord() {
+            const word = filteredWords[fcIndex];
+            if (word) speakWord(word.kana || word.kanji);
+        }
+
+        window.addEventListener('keydown', e => {
+            if (document.activeElement.tagName === 'INPUT') return;
+            const isFcActive = document.getElementById('view-flashcard').classList.contains('active');
+            if (!isFcActive) return;
+
+            if (e.code === 'Space') {
+                e.preventDefault();
+                flipCard();
+            } else if (e.key === 'ArrowRight') {
+                moveCard(1);
+            } else if (e.key === 'ArrowLeft') {
+                moveCard(-1);
+            } else if (e.key.toLowerCase() === 's') {
+                speakCurrentWord();
+            }
+        });
+
+        // =========================================================================
+        // 5. QUIZ KIỂM TRA TỪ VỰNG
+        // =========================================================================
+        let currentQuizWord = null;
+        let quizCorrectCount = 0;
+        let quizTotalCount = 0;
+        let quizStreak = 0;
+
+        function nextQuizQuestion() {
+            const qType = document.getElementById('quiz-type').value;
+            const pool = filteredWords.length >= 4 ? filteredWords : ALL_WORDS;
+            currentQuizWord = pool[Math.floor(Math.random() * pool.length)];
+
+            document.getElementById('quiz-stt').textContent = `Từ #${currentQuizWord.id}`;
+            document.getElementById('quiz-feedback').style.display = 'none';
+
+            const optionsBox = document.getElementById('quiz-options-box');
+            const typingBox = document.getElementById('quiz-typing-box');
+
+            if (qType === 'vi2jp') {
+                document.getElementById('quiz-q-main').textContent = currentQuizWord.meaning;
+                document.getElementById('quiz-q-sub').textContent =
+                    currentQuizWord.hanviet ? `Gợi ý Hán Việt: ${currentQuizWord.hanviet}` : 'Chọn từ tiếng Nhật đúng';
+            } else {
+                document.getElementById('quiz-q-main').textContent = currentQuizWord.kanji || currentQuizWord.kana;
+                document.getElementById('quiz-q-sub').textContent =
+                    qType === 'jp2vi' ? `Cách đọc: ${currentQuizWord.kana}` : (currentQuizWord.hanviet || 'Chọn/gõ cách đọc đúng');
+            }
+
+            if (qType === 'typing') {
+                optionsBox.style.display = 'none';
+                typingBox.style.display = 'flex';
+                const inp = document.getElementById('quiz-typing-input');
+                inp.value = '';
+                inp.disabled = false;
+                inp.focus();
+                return;
+            }
+
+            optionsBox.style.display = 'grid';
+            typingBox.style.display = 'none';
+
+            const choices = [currentQuizWord];
+            while (choices.length < 4) {
+                const randW = ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
+                if (!choices.some(c => c.id === randW.id)) choices.push(randW);
+            }
+            choices.sort(() => Math.random() - 0.5);
+
+            optionsBox.innerHTML = '';
+            choices.forEach(ch => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-opt-btn';
+                if (qType === 'jp2vi') {
+                    btn.textContent = ch.meaning;
+                } else if (qType === 'vi2jp') {
+                    btn.textContent = ch.kanji ? `${ch.kanji} (${ch.kana})` : ch.kana;
+                } else {
+                    btn.textContent = `${ch.kana} — ${ch.meaning}`;
+                }
+                btn.onclick = () => checkQuizChoice(btn, ch.id === currentQuizWord.id);
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function checkQuizChoice(btn, isCorrect) {
+            document.querySelectorAll('.quiz-opt-btn').forEach(b => b.disabled = true);
+            quizTotalCount++;
+            if (isCorrect) {
+                quizCorrectCount++;
+                quizStreak++;
+                btn.classList.add('correct');
+                learnedSet.add(currentQuizWord.id);
+                saveProgress();
+                showQuizFeedback(true, `🎉 Chính xác! ${currentQuizWord.kanji || currentQuizWord.kana} (${currentQuizWord.kana}) = ${currentQuizWord.meaning}`);
+            } else {
+                quizStreak = 0;
+                btn.classList.add('wrong');
+                showQuizFeedback(false, `❌ Đáp án đúng: ${currentQuizWord.kanji || ''} 【${currentQuizWord.kana}】 — ${currentQuizWord.meaning}`);
+            }
+            speakWord(currentQuizWord.kana);
+            updateQuizScoreUI();
+        }
+
+        function checkTypingAnswer() {
+            const inp = document.getElementById('quiz-typing-input');
+            if (inp.disabled) return;
+            const userAns = inp.value.trim();
+            if (!userAns) return;
+
+            inp.disabled = true;
+            quizTotalCount++;
+            const validReadings = currentQuizWord.kana.split(/[\/・()→]/).map(s => s.trim()).filter(Boolean);
+            const isCorrect = validReadings.includes(userAns) || userAns === currentQuizWord.kana;
+
+            if (isCorrect) {
+                quizCorrectCount++;
+                quizStreak++;
+                learnedSet.add(currentQuizWord.id);
+                saveProgress();
+                showQuizFeedback(true, `🎉 Chuẩn xác! 【${currentQuizWord.kana}】 — ${currentQuizWord.meaning}`);
+            } else {
+                quizStreak = 0;
+                showQuizFeedback(false, `❌ Chưa đúng! Đáp án: 【${currentQuizWord.kana}】 — ${currentQuizWord.meaning}`);
+            }
+            speakWord(currentQuizWord.kana);
+            updateQuizScoreUI();
+        }
+
+        function showQuizFeedback(isGood, msg) {
+            const fb = document.getElementById('quiz-feedback');
+            fb.style.display = 'flex';
+            fb.style.background = isGood ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+            fb.style.color = isGood ? 'var(--primary-green-dark)' : '#ef4444';
+            document.getElementById('quiz-fb-text').textContent = msg;
+        }
+
+        function updateQuizScoreUI() {
+            document.getElementById('quiz-score').textContent = `Đúng: ${quizCorrectCount} / ${quizTotalCount}`;
+            document.getElementById('quiz-streak').textContent = `🔥 Chuỗi: ${quizStreak}`;
+        }
+
+        // =========================================================================
+        // 6. BẢNG CHECKLIST 880 TỪ VỰNG
+        // =========================================================================
+        function renderTable() {
+            const q = (document.getElementById('search-input').value || '').toLowerCase().trim();
+            const tbody = document.getElementById('vocab-tbody');
+
+            const rows = filteredWords.filter(w => {
+                if (!q) return true;
+                return (
+                    String(w.id) === q ||
+                    w.kanji.toLowerCase().includes(q) ||
+                    w.kana.toLowerCase().includes(q) ||
+                    w.meaning.toLowerCase().includes(q) ||
+                    w.hanviet.toLowerCase().includes(q)
+                );
+            });
+
+            tbody.innerHTML = rows.map(w => {
+                const isLearned = learnedSet.has(w.id);
+                const isStarred = starredSet.has(w.id);
+                return `
+                    <tr class="${isLearned ? 'row-learned' : ''}">
+                        <td>
+                            <input type="checkbox" class="check-input" ${isLearned ? 'checked' : ''}
+                                   onchange="toggleRowCheck(${w.id}, this.checked)">
+                        </td>
+                        <td><strong>#${w.id}</strong></td>
+                        <td class="kanji-cell">${w.kanji || '—'}</td>
+                        <td class="kana-cell">${w.kana}</td>
+                        <td>${w.meaning}</td>
+                        <td>${w.hanviet ? `<span class="hv-cell">${w.hanviet}</span>` : ''}</td>
+                        <td>
+                            <button class="circle-btn" style="display:inline-flex;width:32px;height:32px;"
+                                    onclick="speakWord('${w.kana.replace(/'/g, "\\'")}')">🔊</button>
+                            <button class="circle-btn ${isStarred ? 'starred' : ''}" style="display:inline-flex;width:32px;height:32px;"
+                                    onclick="toggleRowStar(${w.id})">${isStarred ? '★' : '☆'}</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function toggleRowCheck(id, checked) {
+            if (checked) learnedSet.add(id);
+            else learnedSet.delete(id);
+            saveProgress();
+            renderTable();
+            renderFlashcard();
+        }
+
+        function toggleRowStar(id) {
+            if (starredSet.has(id)) starredSet.delete(id);
+            else starredSet.add(id);
+            saveProgress();
+            renderTable();
+            renderFlashcard();
+        }
+
+        function markBatchInRange(checkStatus) {
+            filteredWords.forEach(w => {
+                if (checkStatus) learnedSet.add(w.id);
+                else learnedSet.delete(w.id);
+            });
+            saveProgress();
+            renderTable();
+            renderFlashcard();
+        }
+
+        function switchView(viewName, btnEl) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+
+            if (viewName === 'community') {
+                document.getElementById('view-community').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+            ['flashcard', 'quiz', 'list'].forEach(v => {
+                document.getElementById(`view-${v}`).classList.toggle('active', v === viewName);
+            });
+        }
+
+        // Khởi chạy ứng dụng & vẽ 2 mã QR
+        updateHeaderProgress();
+        applyFilter();
+        renderAppQR();
+        renderBankQR();
+    </script>
+</body>
+</html>
